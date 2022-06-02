@@ -12,7 +12,6 @@ Want to run it locally?
    (the url of your mongodb cluster) 
    ````
    MONGODB_URI="mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]" 
-   
    ````
    (the url of your mongodb cluster for testing)  
    ````
@@ -25,7 +24,7 @@ Want to run it locally?
    ````
 
 5. Clone fake-hotel-fe
-6. inside fake-hotel-fe run:
+6. Inside fake-hotel-fe run:
    ````
    npm start
    ````
