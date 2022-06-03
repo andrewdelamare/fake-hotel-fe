@@ -1,37 +1,50 @@
 # Fake Hotel Front End
-### *This project requires a connection to fake-hotel-be in order to funciton properly.*
+
+### _This project requires a connection to fake-hotel-be in order to funciton properly._
+
 \
 Want to run it locally?
+
 1. Clone [fake-hotel-be](https://github.com/andrewdelamare/fake-hotel-be.git)
-2. Create .env file and assign values to:  
+2. Create .env file and assign values to:
 
    (the port you want to run the server on)
-   ````
-   PORT=3003 
-   ````
-   (the url of your mongodb cluster) 
-   ````
-   MONGODB_URI="mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]" 
-   ````
-   (the url of your mongodb cluster for testing)  
-   ````
+
+   ```
+   PORT=3003
+   ```
+
+   (the url of your mongodb cluster)
+
+   ```
+   MONGODB_URI="mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]"
+   ```
+
+   (the url of your mongodb cluster for testing)
+
+   ```
    TEST_URI="mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[defaultauthdb][?options]]"
-   ````   
+   ```
+
 3. Inside your fake-hotel-be run:
-   ````
+
+   ```
    npm install
    npm run
-   ````
+   ```
 
-5. Clone fake-hotel-fe
-6. Inside fake-hotel-fe run:
-   ````
+4. Clone fake-hotel-fe
+5. Inside fake-hotel-fe run:
+   ```
    npm start
-   ````
-****
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).    
-****
- 
+   ```
+
+---
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+---
+
 ## Available Scripts
 
 In the project directory, you can run:
