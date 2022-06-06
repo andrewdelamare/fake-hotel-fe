@@ -7,7 +7,7 @@ const Date = (updateDayStart, updateDayEnd, dateIndex) => {
 
 };
 
-const Month = ({month}) => {
+const Month = ({month, className}) => {
   const intYr = month.yr
   const intMon = month.mon < 10 ? `0${month.mon}` : month.mon
   const day = parseISO(`${intYr}-${intMon}-15`)
@@ -19,7 +19,7 @@ const Month = ({month}) => {
     end: end
   }) 
   return (
-  <div className="flex flex-col">
+  <div className={className}>
     <h1 className="self-center text-xl">{day.toLocaleString('default', { month: 'long', year: 'numeric' })}</h1>
     <div className="grid gap-3 grid-cols-7 pt-3 w-full"> 
       <div className="m-2">S</div>
@@ -141,8 +141,6 @@ export const Calendar = () => {
         setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
         break;
       }
-      break
-
       default:
         console.log("please enter + or - to change the month") 
         break;
@@ -157,11 +155,11 @@ export const Calendar = () => {
         <button className="mx-5" onClick={() => updateMonth('-')}>-</button>
         <button className="mx-5" onClick={() => updateMonth('+')}>+</button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mx-auto border-2 border-slate-900 rounded-xl px-5">
-        <Month month={lastMonth} />
-        <Month month={selectedMonth} />
-        <Month month={nextMonth} />
-        <Month month={nextNextMonth} />  
+      <div className="flex justify-between mx-auto border-2 border-slate-900 rounded-xl px-5">
+        <Month month={lastMonth} className="invisible mx-4" />
+        <Month month={selectedMonth} className="mx-4" />
+        <Month month={nextMonth} className="mx-4"/>
+        <Month month={nextNextMonth} className="invisible mx-4" />  
       </div>
      
     </div>
