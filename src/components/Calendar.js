@@ -20,22 +20,31 @@ const Month = ({month}) => {
   }) 
   console.log(intMon)
   return (
-  <div>
-    <div className="grid grid-cols-7 pt-3"> <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div>
+  <div className=" flex flex-col border-2 border-slate-900 rounded-xl px-5 ">
+    <h1 className="self-center text-xl">{day.toLocaleString('default', { month: 'long', year: 'numeric' })}</h1>
+    <div className="grid gap-3 grid-cols-7 pt-3 w-full"> 
+      <div className="m-2">S</div>
+      <div className="m-2">M</div>
+      <div className="m-2">T</div>
+      <div className="m-2">W</div>
+      <div className="m-2">T</div>
+      <div className="m-2">F</div>
+      <div className="m-2">S</div>
+    </div>
     <div className="grid gap-3 grid-cols-7 pt-3 ">
       {
         allDays.map(day => {
           const dayOfWeek = day.getDay();
           let stylez = ''
           switch (dayOfWeek){  
-            case 0: stylez = 'col-start-1 col-end-1 rounded-full border-slate-800'; break;
-            case 1: stylez = 'col-start-2 col-end-2 rounded-full border-slate-800'; break;
-            case 2: stylez = 'col-start-3 col-end-3 rounded-full border-slate-800'; break;
-            case 3: stylez = 'col-start-4 col-end-4 rounded-full border-slate-800'; break;
-            case 4: stylez = 'col-start-5 col-end-5 rounded-full border-slate-800'; break;
-            case 5: stylez = 'col-start-6 col-end-6 rounded-full border-slate-800'; break;
-            case 6: stylez = 'col-start-7 col-end-7 rounded-full border-slate-800'; break;
-            default: stylez = 'rounded-full border-slate-800'; break;
+            case 0: stylez = 'col-start-1 col-end-1 m-2'; break;
+            case 1: stylez = 'col-start-2 col-end-2 m-2'; break;
+            case 2: stylez = 'col-start-3 col-end-3 m-2'; break;
+            case 3: stylez = 'col-start-4 col-end-4 m-2'; break;
+            case 4: stylez = 'col-start-5 col-end-5 m-2'; break;
+            case 5: stylez = 'col-start-6 col-end-6 m-2'; break;
+            case 6: stylez = 'col-start-7 col-end-7 m-2'; break;
+            default: stylez = ''; break;
           }
           return(
             <div className={stylez} key={day} >{day.getDate()}</div>
