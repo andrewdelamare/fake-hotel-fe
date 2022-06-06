@@ -18,14 +18,28 @@ const Month = ({month}) => {
     start: start, 
     end: end
   }) 
-  console.log(allDays)
+  console.log(intMon)
   return (
   <div>
-    <div className="grid grid-cols-7"> <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div>
-    <div className="grid grid-cols-7">
+    <div className="grid grid-cols-7 pt-3"> <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div>
+    <div className="grid gap-3 grid-cols-7 pt-3 ">
       {
         allDays.map(day => {
-          <div className="col-" >{day.getDay()}</div>
+          const dayOfWeek = day.getDay();
+          let stylez = ''
+          switch (dayOfWeek){  
+            case 0: stylez = 'col-start-1 col-end-1 rounded-full border-slate-800'; break;
+            case 1: stylez = 'col-start-2 col-end-2 rounded-full border-slate-800'; break;
+            case 2: stylez = 'col-start-3 col-end-3 rounded-full border-slate-800'; break;
+            case 3: stylez = 'col-start-4 col-end-4 rounded-full border-slate-800'; break;
+            case 4: stylez = 'col-start-5 col-end-5 rounded-full border-slate-800'; break;
+            case 5: stylez = 'col-start-6 col-end-6 rounded-full border-slate-800'; break;
+            case 6: stylez = 'col-start-7 col-end-7 rounded-full border-slate-800'; break;
+            default: stylez = 'rounded-full border-slate-800'; break;
+          }
+          return(
+            <div className={stylez} key={day} >{day.getDate()}</div>
+          )
         })
       }
     </div>
@@ -57,43 +71,34 @@ export const Calendar = () => {
   const updateMonth = (direction) => {
     switch (direction){
       case '+':
-        if (selectedMonth.mon === 10){
-          setSelectedMonth({mon: 11, yr: selectedMonth.yr});
-          setNextMonth({mon: 0, yr: nextMonth.yr + 1});
-          console.log(selectedMonth)
-          console.log(nextMonth);
+        if (selectedMonth.mon === 11){
+          setSelectedMonth({mon: 12, yr: selectedMonth.yr});
+          setNextMonth({mon: 1, yr: nextMonth.yr + 1});
+          
           break
-        }else if (selectedMonth.mon === 11){
-          setSelectedMonth({mon: 0, yr: selectedMonth.yr + 1});
-          setNextMonth({mon: 1, yr: nextMonth.yr});
-          console.log(selectedMonth)
-          console.log(nextMonth);
+        }else if (selectedMonth.mon === 12){
+          setSelectedMonth({mon: 1, yr: selectedMonth.yr + 1});
+          setNextMonth({mon: 2, yr: nextMonth.yr});
+          
           break
         }else{
           setSelectedMonth({mon: selectedMonth.mon + 1, yr: selectedMonth.yr});
           setNextMonth({mon: nextMonth.mon + 1, yr: nextMonth.yr});
-          console.log(selectedMonth)
-          console.log(nextMonth);
+          
           break;
         }   
       case '-': 
-      if (selectedMonth.mon === 0){
-        setSelectedMonth({mon: 11, yr: selectedMonth.yr - 1 });
-        setNextMonth({mon: 0, yr: nextMonth.yr});
-        console.log(selectedMonth)
-        console.log(nextMonth);
+      if (selectedMonth.mon === 1){
+        setSelectedMonth({mon: 12, yr: selectedMonth.yr - 1 });
+        setNextMonth({mon: 1, yr: nextMonth.yr});
         break
-      }else if (selectedMonth.mon === 11){
-        setSelectedMonth({mon: 10, yr: selectedMonth.yr});
-        setNextMonth({mon: 11, yr: nextMonth.yr - 1});
-        console.log(selectedMonth)
-        console.log(nextMonth);
+      }else if (selectedMonth.mon === 12){
+        setSelectedMonth({mon: 11, yr: selectedMonth.yr});
+        setNextMonth({mon: 12, yr: nextMonth.yr - 1});
         break
       }else{
         setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
         setNextMonth({mon: nextMonth.mon - 1, yr: nextMonth.yr});
-        console.log(selectedMonth)
-        console.log(nextMonth);
         break;
       }   
       default:
@@ -110,8 +115,11 @@ export const Calendar = () => {
         <button className="mx-5" onClick={() => updateMonth('-')}>-</button>
         <button className="mx-5" onClick={() => updateMonth('+')}>+</button>
       </div>
-      <Month month={selectedMonth} />
-      <Month month={nextMonth} />  
+      <div className="flex-row mx-auto">
+        <Month month={selectedMonth} />
+        <Month month={nextMonth} />  
+      </div>
+     
     </div>
   )
 
