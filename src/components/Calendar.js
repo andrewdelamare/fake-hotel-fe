@@ -24,7 +24,10 @@ const Month = ({month, className}) => {
   }) 
   return (
   <div className={className}>
-    <h1 className="self-center text-xl">{day.toLocaleString('default', { month: 'long', year: 'numeric' })}</h1>
+    <div className="flex">
+      <h1 className="self-center text-xl mx-auto">{day.toLocaleString('default', { month: 'long', year: 'numeric' })}</h1>
+    </div>
+      
     <div className="grid gap-3 grid-cols-7 pt-3 mx-4"> 
       <div className="place-self-center">S</div>
       <div className="place-self-center">M</div>
@@ -72,27 +75,27 @@ export const Calendar = () => {
   const [selectedDayStart, setSelectedDayStart] = useState(today);
   const [selectedDayEnd, setSelectedDayEnd] = useState();
   const [selectedMonth, setSelectedMonth] = useState({mon: month, yr: year});
-  const [smStyleState, setSmS] = useState("transition");
+  const [smStyleState, setSmS] = useState("");
   const [nextMonth, setNextMonth] = useState({mon: month === 12 ? 1 : month + 1 , yr: month === 12 ? year + 1 : year});
-  const [nmStyleState, setNmS] = useState("transition");
+  const [nmStyleState, setNmS] = useState("");
   const [nextNextMonth, setNextNextMonth] = useState({mon: month === 12 ? 2 : month === 11 ? 1 : month + 2 , yr: month === 12 ? year + 1 : month === 11 ? year + 1 : year});
-  const [nnmStyleState, setNnMs] = useState("transition opacity-0");
+  const [nnmStyleState, setNnMs] = useState("opacity-0");
   const [lastMonth, setLastMonth] = useState({mon: month === 1 ? 12 : month - 1 , yr: month === 1 ? year - 1 : year});
-  const [lmStyleState, setLmS] = useState("transition opacity-0");
+  const [lmStyleState, setLmS] = useState("opacity-0");
 
-  const lmStyles = "invisible transition "
-  const lmTransitionR = " transition translate-x-64 "
+  const lmStyles = "opacity-0 "
+  const lmTransitionR = "opacity-100 transition duration-300 translate-x-full"
 
   const smStyles = "opacity-100";
-  const smTransitionL = "opacity-0 transition -translate-x-full  ";
-  const smTransitionR = " transition translate-x-64 ";
+  const smTransitionL = "opacity-0 transition duration-300 -translate-x-full  ";
+  const smTransitionR = " transition duration-300 translate-x-full";
 
-  const nmStyles = "";
-  const nmTransitionL = "transition -translate-x-full";
-  const nmTransitionR = "transition translate-x-64";
+  const nmStyles = "opacity-100";
+  const nmTransitionL = " transition duration-300 -translate-x-full ";
+  const nmTransitionR = "transition duration-300 opacity-0 translate-x-full";
 
   const nNmStyles = "opacity-0";
-  const nNmTransitionL = "opacity-100  ease-in transition -translate-x-full";
+  const nNmTransitionL = "opacity-100 transition duration-300 -translate-x-full";
 
 
   const updateDayStart = (date) => {
@@ -111,45 +114,54 @@ export const Calendar = () => {
           setSmS(smTransitionL);
           setNmS(nmTransitionL);
           setNnMs(nNmTransitionL);
-          //set new data
-          setLastMonth({mon: selectedMonth.mon, yr: selectedMonth.yr})
-          setSelectedMonth({mon: selectedMonth.mon + 1, yr: selectedMonth.yr});
-          setNextMonth({mon: 1, yr: nextMonth.yr + 1});
-          setNextNextMonth({mon: nextNextMonth.mon + 1, yr: nextNextMonth.yr});
-          //revert styles
-          setSmS(smStyles);
-          setNmS(nmStyles);
-          setNnMs(nNmStyles);
+          setTimeout(() => {
+            //set new data
+            setLastMonth({mon: selectedMonth.mon, yr: selectedMonth.yr})
+            setSelectedMonth({mon: selectedMonth.mon + 1, yr: selectedMonth.yr});
+            setNextMonth({mon: 1, yr: nextMonth.yr + 1});
+            setNextNextMonth({mon: nextNextMonth.mon + 1, yr: nextNextMonth.yr});
+            //revert styles
+            setSmS(smStyles);
+            setNmS(nmStyles);
+            setNnMs(nNmStyles);
+          }, 300);
+          
           break
         }else if (selectedMonth.mon === 12){
           //move calendars
           setSmS(smTransitionL);
           setNmS(nmTransitionL);
           setNnMs(nNmTransitionL);
-          //set new data
-          setLastMonth({mon: selectedMonth.mon, yr: selectedMonth.yr})
-          setSelectedMonth({mon: 1, yr: selectedMonth.yr + 1});
-          setNextMonth({mon: 2, yr: nextMonth.yr});
-          setNextNextMonth({mon: nextNextMonth.mon + 1, yr: nextNextMonth.yr});
-          //revert styles
-          setSmS(smStyles);
-          setNmS(nmStyles);
-          setNnMs(nNmStyles);
+                      setTimeout(() => {
+            //set new data
+            setLastMonth({mon: selectedMonth.mon, yr: selectedMonth.yr})
+            setSelectedMonth({mon: 1, yr: selectedMonth.yr + 1});
+            setNextMonth({mon: 2, yr: nextMonth.yr});
+            setNextNextMonth({mon: nextNextMonth.mon + 1, yr: nextNextMonth.yr});
+            //revert styles
+            setSmS(smStyles);
+            setNmS(nmStyles);
+            setNnMs(nNmStyles);
+          }, 300);
+          
           break
         }else if (selectedMonth.mon === 10){
           //move calendars
           setSmS(smTransitionL);
           setNmS(nmTransitionL);
           setNnMs(nNmTransitionL);
-          //set new data
-          setLastMonth({mon: selectedMonth.mon, yr: selectedMonth.yr})
-          setSelectedMonth({mon: selectedMonth.mon + 1, yr: selectedMonth.yr});
-          setNextMonth({mon: nextMonth.mon + 1, yr: nextMonth.yr});
-          setNextNextMonth({mon: 1, yr: nextNextMonth.yr + 1});
-          //revert styles
-          setSmS(smStyles);
-          setNmS(nmStyles);
-          setNnMs(nNmStyles);
+          setTimeout(() => {
+            //set new data
+            setLastMonth({mon: selectedMonth.mon, yr: selectedMonth.yr})
+            setSelectedMonth({mon: selectedMonth.mon + 1, yr: selectedMonth.yr});
+            setNextMonth({mon: nextMonth.mon + 1, yr: nextMonth.yr});
+            setNextNextMonth({mon: 1, yr: nextNextMonth.yr + 1});
+            //revert styles
+            setSmS(smStyles);
+            setNmS(nmStyles);
+            setNnMs(nNmStyles);
+          }, 300);
+          
           break
         }else{
           //move calendars
@@ -166,7 +178,7 @@ export const Calendar = () => {
             setSmS(smStyles);
             setNmS(nmStyles);
             setNnMs(nNmStyles);
-          }, 500)
+          }, 300)
           
           break;
         }   
@@ -176,15 +188,18 @@ export const Calendar = () => {
         setLmS(lmTransitionR);
         setSmS(smTransitionR);
         setNmS(nmTransitionR);
-        //set new data
-        setLastMonth({mon: lastMonth.mon - 1, yr: selectedMonth.yr})
-        setNextMonth({mon: selectedMonth.mon, yr: selectedMonth.yr});
-        setNextNextMonth({mon: nextNextMonth.mon - 1, yr: nextNextMonth.yr});
-        setSelectedMonth({mon: 12, yr: selectedMonth.yr - 1 });
-        //revert styles
-        setLmS(lmStyles)
-        setSmS(smStyles);
-        setNmS(nmStyles);
+        setTimeout(() => {
+          //set new data
+          setLastMonth({mon: lastMonth.mon - 1, yr: selectedMonth.yr})
+          setNextMonth({mon: selectedMonth.mon, yr: selectedMonth.yr});
+          setNextNextMonth({mon: nextNextMonth.mon - 1, yr: nextNextMonth.yr});
+          setSelectedMonth({mon: 12, yr: selectedMonth.yr - 1 });
+          //revert styles
+          setLmS(lmStyles)
+          setSmS(smStyles);
+          setNmS(nmStyles);
+        }, 300);
+        
         
 
         break
@@ -193,62 +208,74 @@ export const Calendar = () => {
         setLmS(lmTransitionR);
         setSmS(smTransitionR);
         setNmS(nmTransitionR);
-        //set new data
-        setLastMonth({mon: 12, yr: lastMonth.yr - 1})
-        setNextMonth({mon: selectedMonth.mon, yr: selectedMonth.yr});
-        setNextNextMonth({mon: nextNextMonth.mon - 1, yr: nextNextMonth.yr});
-        setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
-        //revert styles
-        setLmS(lmStyles)
-        setSmS(smStyles);
-        setNmS(nmStyles);
+        setTimeout(() => {
+          //set new data
+          setLastMonth({mon: 12, yr: lastMonth.yr - 1})
+          setNextMonth({mon: selectedMonth.mon, yr: selectedMonth.yr});
+          setNextNextMonth({mon: nextNextMonth.mon - 1, yr: nextNextMonth.yr});
+          setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
+          //revert styles
+          setLmS(lmStyles)
+          setSmS(smStyles);
+          setNmS(nmStyles);
+        }, 300);
+       
         break
       }else if  (selectedMonth.mon === 12){
         //move calendars
         setLmS(lmTransitionR);
         setSmS(smTransitionR);
         setNmS(nmTransitionR);
-        //set new data
-        setLastMonth({mon: lastMonth.mon - 1, yr: selectedMonth.yr})
-        setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
-        setNextMonth({mon: 12, yr: nextMonth.yr});
-        setNextNextMonth({mon: nextNextMonth.mon - 1, yr: nextNextMonth.yr});
-       
-        //revert styles
-        setLmS(lmStyles)
-        setSmS(smStyles);
-        setNmS(nmStyles);
+        setTimeout(() => {
+          //set new data
+          setLastMonth({mon: lastMonth.mon - 1, yr: selectedMonth.yr})
+          setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
+          setNextMonth({mon: 12, yr: nextMonth.yr});
+          setNextNextMonth({mon: nextNextMonth.mon - 1, yr: nextNextMonth.yr});
+
+          //revert styles
+          setLmS(lmStyles)
+          setSmS(smStyles);
+          setNmS(nmStyles);
+        }, 300);
+        
         break
       }else if  (selectedMonth.mon === 11){
         //move calendars
         setLmS(lmTransitionR);
         setSmS(smTransitionR);
         setNmS(nmTransitionR);
-        //set new data
-        setLastMonth({mon: lastMonth.mon - 1, yr: selectedMonth.yr})
-        setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
-        setNextMonth({mon: nextMonth.mon - 1, yr: nextMonth.yr});
-        setNextNextMonth({mon: 12, yr: nextNextMonth.yr - 1});
-        
-        //revert styles
-        setLmS(lmStyles)
-        setSmS(smStyles);
-        setNmS(nmStyles);
+        setTimeout(() => {
+          //set new data
+          setLastMonth({mon: lastMonth.mon - 1, yr: selectedMonth.yr})
+          setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
+          setNextMonth({mon: nextMonth.mon - 1, yr: nextMonth.yr});
+          setNextNextMonth({mon: 12, yr: nextNextMonth.yr - 1});
+          
+          //revert styles
+          setLmS(lmStyles)
+          setSmS(smStyles);
+          setNmS(nmStyles);
+        }, 300);
+      
         break;
       }else{
         //move calendars
         setLmS(lmTransitionR);
         setSmS(smTransitionR);
         setNmS(nmTransitionR);
-        //set new data
-        setLastMonth({mon: lastMonth.mon - 1, yr: selectedMonth.yr});
-        setNextMonth({mon: selectedMonth.mon, yr: selectedMonth.yr});
-        setNextNextMonth({mon: nextNextMonth.mon - 1, yr: nextNextMonth.yr});
-        setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
-        //revert styles
-        setLmS(lmStyles)
-        setSmS(smStyles);
-        setNmS(nmStyles);
+        setTimeout(() => {
+          //set new data
+          setLastMonth({mon: lastMonth.mon - 1, yr: selectedMonth.yr});
+          setNextMonth({mon: selectedMonth.mon, yr: selectedMonth.yr});
+          setNextNextMonth({mon: nextNextMonth.mon - 1, yr: nextNextMonth.yr});
+          setSelectedMonth({mon: selectedMonth.mon - 1, yr: selectedMonth.yr});
+          //revert styles
+          setLmS(lmStyles)
+          setSmS(smStyles);
+          setNmS(nmStyles);
+        }, 300);
+       
         break;
       }
       default:
@@ -258,12 +285,12 @@ export const Calendar = () => {
   }
 
   return (
-    <div className="flex flex-col absolute left-0 w-1200">
-      <div className="flex-row mx-auto">
-        <button className="mx-5" onClick={() => updateMonth('-')}>-</button>
-        <button className="mx-5" onClick={() => updateMonth('+')}>+</button>
+    <div className="absolute -left-64 w-1400 overflow-hidden ">
+      <div className="flex justify-center flex-row mx-auto">
+        <button className="mx-5 self-center" onClick={() => updateMonth('-')}>-</button>
+        <button className="mx-5 self-center" onClick={() => updateMonth('+')}>+</button>
       </div>
-      <div className="flex justify-between border-2 border-slate-900 rounded-xl">
+      <div className="flex flex-row overflow-hidden ">
         <Month month={lastMonth} className={lmStyleState} />
         <Month month={selectedMonth} className={smStyleState} />
         <Month month={nextMonth} className={nmStyleState} />
