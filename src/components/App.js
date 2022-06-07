@@ -1,7 +1,7 @@
 import { Calendar } from "./Calendar";
 function App() {
   return (
-    <div className="container">
+    <div className="container overflow-x-hidden">
       <Calendar />
     </div>
   );

@@ -72,13 +72,13 @@ export const Calendar = () => {
   const [selectedDayStart, setSelectedDayStart] = useState(today);
   const [selectedDayEnd, setSelectedDayEnd] = useState();
   const [selectedMonth, setSelectedMonth] = useState({mon: month, yr: year});
-  const [smStyleState, setSmS] = useState("");
+  const [smStyleState, setSmS] = useState("transition");
   const [nextMonth, setNextMonth] = useState({mon: month === 12 ? 1 : month + 1 , yr: month === 12 ? year + 1 : year});
-  const [nmStyleState, setNmS] = useState("");
+  const [nmStyleState, setNmS] = useState("transition");
   const [nextNextMonth, setNextNextMonth] = useState({mon: month === 12 ? 2 : month === 11 ? 1 : month + 2 , yr: month === 12 ? year + 1 : month === 11 ? year + 1 : year});
-  const [nnmStyleState, setNnMs] = useState("opacity-0");
+  const [nnmStyleState, setNnMs] = useState("transition opacity-0");
   const [lastMonth, setLastMonth] = useState({mon: month === 1 ? 12 : month - 1 , yr: month === 1 ? year - 1 : year});
-  const [lmStyleState, setLmS] = useState("opacity-0");
+  const [lmStyleState, setLmS] = useState("transition opacity-0");
 
   const lmStyles = "invisible transition "
   const lmTransitionR = " transition translate-x-64 "
@@ -258,12 +258,12 @@ export const Calendar = () => {
   }
 
   return (
-    <div className="flex flex-col absolute left-0 w-600">
+    <div className="flex flex-col absolute left-0 w-1200">
       <div className="flex-row mx-auto">
         <button className="mx-5" onClick={() => updateMonth('-')}>-</button>
         <button className="mx-5" onClick={() => updateMonth('+')}>+</button>
       </div>
-      <div className="flex justify-between mx-auto border-2 border-slate-900 rounded-xl px-5">
+      <div className="flex justify-between border-2 border-slate-900 rounded-xl">
         <Month month={lastMonth} className={lmStyleState} />
         <Month month={selectedMonth} className={smStyleState} />
         <Month month={nextMonth} className={nmStyleState} />
