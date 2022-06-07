@@ -2,10 +2,14 @@ import { format, compareAsc, getMonth, getWeeksInMonth, getDaysInMonth, eachDayO
 import { startOfToday } from "date-fns";
 import { useState } from "react";
 
+// ------------------------------------------------------------------------
+
 const Date = (updateDayStart, updateDayEnd, dateIndex) => {
 
 
 };
+
+// ------------------------------------------------------------------------
 
 const Month = ({month, className}) => {
   const intYr = month.yr
@@ -55,6 +59,8 @@ const Month = ({month, className}) => {
   )
 };
 
+// ------------------------------------------------------------------------
+
 export const Calendar = () => {
   let today = startOfToday();
   // If today is 6 October 2014:
@@ -66,9 +72,27 @@ export const Calendar = () => {
   const [selectedDayStart, setSelectedDayStart] = useState(today);
   const [selectedDayEnd, setSelectedDayEnd] = useState();
   const [selectedMonth, setSelectedMonth] = useState({mon: month, yr: year});
+  const [smStyleState, setSmS] = useState("mx-4 transition");
   const [nextMonth, setNextMonth] = useState({mon: month === 12 ? 1 : month + 1 , yr: month === 12 ? year + 1 : year});
+  const [nmStyleState, setNmS] = useState("mx-4 transition");
   const [nextNextMonth, setNextNextMonth] = useState({mon: month === 12 ? 2 : month === 11 ? 1 : month + 2 , yr: month === 12 ? year + 1 : month === 11 ? year + 1 : year});
+  const [nnmStyleState, setNnMs] = useState("mx-4 transition invisible");
   const [lastMonth, setLastMonth] = useState({mon: month === 1 ? 12 : month - 1 , yr: month === 1 ? year - 1 : year});
+  const [lmStyleState, setLmS] = useState("mx-4 transition invisible");
+
+  const lmStyles = "invisible mx-4 transition "
+  const lmTransitionR = "mx-4 transition translate-x-32 "
+
+  const smStyles = "mx-4 transition  ";
+  const smTransitionL = "mx-4 transition -translate-x-32  ";
+  const smTransitionR = "mx-4 transition translate-x-32 ";
+
+  const nmStyles = "mx-4 transition ";
+  const nmTransitionL = "mx-4 transition -translate-x-32";
+  const nmTransitionR = "mx-4 transition translate-x-32";
+
+  const nNmStyles = "invisible mx-4 transition ";
+  const nNmTransitionL = "mx-4 transition -translate-x-32";
 
 
   const updateDayStart = (date) => {
@@ -83,10 +107,16 @@ export const Calendar = () => {
     switch (direction){
       case '+':
         if (selectedMonth.mon === 11){
+          //set data
           setLastMonth({mon: selectedMonth.mon, yr: selectedMonth.yr})
           setSelectedMonth({mon: selectedMonth.mon + 1, yr: selectedMonth.yr});
           setNextMonth({mon: 1, yr: nextMonth.yr + 1});
           setNextNextMonth({mon: nextNextMonth.mon + 1, yr: nextNextMonth.yr});
+          //set styles
+          setSmS(smTransitionL);
+          setNmS(nmTransitionL);
+          setNnMs(nNmTransitionL);
+
           break
         }else if (selectedMonth.mon === 12){
           setLastMonth({mon: selectedMonth.mon, yr: selectedMonth.yr})
@@ -145,8 +175,6 @@ export const Calendar = () => {
         console.log("please enter + or - to change the month") 
         break;
     }
-    
-
   }
 
   return (
@@ -156,13 +184,11 @@ export const Calendar = () => {
         <button className="mx-5" onClick={() => updateMonth('+')}>+</button>
       </div>
       <div className="flex justify-between mx-auto border-2 border-slate-900 rounded-xl px-5">
-        <Month month={lastMonth} className="invisible mx-4" />
-        <Month month={selectedMonth} className="mx-4" />
-        <Month month={nextMonth} className="mx-4"/>
-        <Month month={nextNextMonth} className="invisible mx-4" />  
+        <Month month={lastMonth} className={lmStyles} />
+        <Month month={selectedMonth} className={smStyles} />
+        <Month month={nextMonth} className={nmStyles} />
+        <Month month={nextNextMonth} className={nNmStyles} />  
       </div>
-     
     </div>
   )
-
 };
