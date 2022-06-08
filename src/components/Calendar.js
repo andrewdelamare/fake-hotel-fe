@@ -9,17 +9,20 @@ const Date = ({updateDayStart, updateDayEnd, day, selected}) => {
   
   let stylez = ''
   switch (dayOfWeek){  
-    case 0: stylez = 'col-start-1 col-end-1 m-2 place-self-center'; break;
-    case 1: stylez = 'col-start-2 col-end-2 m-2 place-self-center'; break;
-    case 2: stylez = 'col-start-3 col-end-3 m-2 place-self-center'; break;
-    case 3: stylez = 'col-start-4 col-end-4 m-2 place-self-center'; break;
-    case 4: stylez = 'col-start-5 col-end-5 m-2 place-self-center'; break;
-    case 5: stylez = 'col-start-6 col-end-6 m-2 place-self-center'; break;
-    case 6: stylez = 'col-start-7 col-end-7 m-2 place-self-center'; break;
+    case 0: stylez = 'col-start-1 col-end-1 m-2 w-6 h-6 place-self-center justify-around flex'; break;
+    case 1: stylez = 'col-start-2 col-end-2 m-2 w-6 h-6 place-self-center justify-around flex'; break;
+    case 2: stylez = 'col-start-3 col-end-3 m-2 w-6 h-6 place-self-center justify-around flex'; break;
+    case 3: stylez = 'col-start-4 col-end-4 m-2 w-6 h-6 place-self-center justify-around flex'; break;
+    case 4: stylez = 'col-start-5 col-end-5 m-2 w-6 h-6 place-self-center justify-around flex'; break;
+    case 5: stylez = 'col-start-6 col-end-6 m-2 w-6 h-6 place-self-center justify-around flex'; break;
+    case 6: stylez = 'col-start-7 col-end-7 m-2 w-6 h-6 place-self-center justify-around flex'; break;
     default: stylez = ''; break;
   }
+
+  let selStylez = selected != false ? 'bg-black text-white rounded-full' : '';
+
   return (
-    <div className={stylez}  >{day.getDate()}</div>
+    <div className={`${stylez} ${selStylez}` }  >{day.getDate()}</div>
   )
 };
 
