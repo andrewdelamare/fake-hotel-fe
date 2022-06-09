@@ -1,65 +1,75 @@
-import { format, compareAsc, getMonth, getWeeksInMonth, getDaysInMonth, eachDayOfInterval, getYear, startOfMonth, endOfMonth, parseISO, startOfTomorrow } from "date-fns";
+import { format, compareAsc, getMonth, getWeeksInMonth, getDaysInMonth, eachDayOfInterval, getYear, startOfMonth, endOfMonth, parseISO, startOfTomorrow, addDays } from "date-fns";
 import { startOfToday } from "date-fns";
 import { useState } from "react";
 
 // ------------------------------------------------------------------------
 
-const Date = ({updateDayStart, updateDayEnd, day, selected}) => {
+const Date = ({selectDay, day, selectedDayStart, selectedDayEnd}) => {
   const dayOfWeek = day.getDay();
-  
+  let selStart = day.getTime() === selectedDayStart.getTime() ? true : false 
+  let selEnd = false
+  if(selectedDayEnd !== null){
+    if (day.getTime() === selectedDayEnd.getTime()){
+      selEnd = true
+    }
+  }
+
   let stylez = ''
   switch (dayOfWeek){  
-    case 0: stylez = 'col-start-1 col-end-1 m-2 w-6 h-6 place-self-center justify-around flex'; break;
-    case 1: stylez = 'col-start-2 col-end-2 m-2 w-6 h-6 place-self-center justify-around flex'; break;
-    case 2: stylez = 'col-start-3 col-end-3 m-2 w-6 h-6 place-self-center justify-around flex'; break;
-    case 3: stylez = 'col-start-4 col-end-4 m-2 w-6 h-6 place-self-center justify-around flex'; break;
-    case 4: stylez = 'col-start-5 col-end-5 m-2 w-6 h-6 place-self-center justify-around flex'; break;
-    case 5: stylez = 'col-start-6 col-end-6 m-2 w-6 h-6 place-self-center justify-around flex'; break;
-    case 6: stylez = 'col-start-7 col-end-7 m-2 w-6 h-6 place-self-center justify-around flex'; break;
+    case 0: stylez = 'col-start-1 col-end-1 w-8 h-8 place-self-center justify-around place-items-center flex'; break;
+    case 1: stylez = 'col-start-2 col-end-2 w-8 h-8 place-self-center justify-around place-items-center flex'; break;
+    case 2: stylez = 'col-start-3 col-end-3 w-8 h-8 place-self-center justify-around place-items-center flex'; break;
+    case 3: stylez = 'col-start-4 col-end-4 w-8 h-8 place-self-center justify-around place-items-center flex'; break;
+    case 4: stylez = 'col-start-5 col-end-5 w-8 h-8 place-self-center justify-around place-items-center flex'; break;
+    case 5: stylez = 'col-start-6 col-end-6 w-8 h-8 place-self-center justify-around place-items-center flex'; break;
+    case 6: stylez = 'col-start-7 col-end-7 w-8 h-8 place-self-center justify-around place-items-center flex'; break;
     default: stylez = ''; break;
   }
 
-  let selStylez = selected != false ? 'bg-black text-white rounded-full' : '';
+  const selectDayClick = () => {
+    selectDay(day);
+  }
+  const selected = 'bg-black text-white rounded-full';
+  let selStylez = selStart !== false ? selected : selEnd !== false ? selected : '';
 
   return (
-    <div className={`${stylez} ${selStylez}` }  >{day.getDate()}</div>
+    <div className={`${stylez} ${selStylez}`} role='button' onClick={selectDayClick} >{day.getDate()}</div>
   )
 };
 
 // ------------------------------------------------------------------------
 
-const Month = ({month, className, updateDayStart, updateDayEnd, selectedDayStart, selectedDayEnd}) => {
+const Month = ({month, className, selectedDayStart, selectedDayEnd, selectDay}) => {
   const intYr = month.yr
   const intMon = month.mon < 10 ? `0${month.mon}` : month.mon
   const day = parseISO(`${intYr}-${intMon}-15`)
   const start = startOfMonth(day)
   const end = endOfMonth(day);
-  console.log(intMon, intYr)
+  
   const allDays = eachDayOfInterval({
     start: start, 
     end: end
   }) 
+  
   return (
   <div className={className}>
     <div className="flex">
       <h1 className="self-center text-xl mx-auto">{day.toLocaleString('default', { month: 'long', year: 'numeric' })}</h1>
     </div>
       
-    <div className="grid gap-3 grid-cols-7 pt-3 mx-4"> 
-      <div className="place-self-center">S</div>
-      <div className="place-self-center">M</div>
-      <div className="place-self-center">T</div>
-      <div className="place-self-center">W</div>
-      <div className="place-self-center">T</div>
-      <div className="place-self-center">F</div>
-      <div className="place-self-center">S</div>
+    <div className="grid grid-cols-7 pt-3 mx-4"> 
+      <div className="place-self-center w-8 h-8">S</div>
+      <div className="place-self-center w-8 h-8">M</div>
+      <div className="place-self-center w-8 h-8">T</div>
+      <div className="place-self-center w-8 h-8">W</div>
+      <div className="place-self-center w-8 h-8">T</div>
+      <div className="place-self-center w-8 h-8">F</div>
+      <div className="place-self-center w-8 h-8">S</div>
     </div>
     <div className="grid gap-3 grid-cols-7 pt-3 mx-4">
       {
         allDays.map(day => (
-          day.getTime() === selectedDayStart.getTime() ? <Date day={day} key={day} updateDayStart={updateDayStart} updateDayEnd={updateDayEnd} selected={true}/>
-          : day.getTime() === selectedDayEnd.getTime() ? <Date day={day} key={day} updateDayStart={updateDayStart} updateDayEnd={updateDayEnd} selected={true}/>
-          : <Date day={day} key={day} updateDayStart={updateDayStart} updateDayEnd={updateDayEnd} selected={false}/>
+           <Date day={day} key={day} selected={false} selectDay={selectDay} selectedDayStart={selectedDayStart} selectedDayEnd={selectedDayEnd} />
         ))
       }
     </div>
@@ -70,12 +80,12 @@ const Month = ({month, className, updateDayStart, updateDayEnd, selectedDayStart
 // ------------------------------------------------------------------------
 
 export const Calendar = () => {
-  let today = startOfToday();
+  const today = startOfToday();
   // If today is 6 October 2014:
   //=> Mon Oct 6 2014 00:00:00
-  let tomorrow = startOfTomorrow();
+  const tomorrow = startOfTomorrow();
 
-  let month = getMonth(today);
+  let month = getMonth(today) + 1;
   let year = getYear(today);
 
   const [selectedDayStart, setSelectedDayStart] = useState(today);
@@ -104,12 +114,25 @@ export const Calendar = () => {
   const nNmTransitionL = "opacity-100 transition duration-300 -translate-x-full";
 
 
-  const updateDayStart = (date) => {
-    setSelectedDayStart(date)
-  }
-
-  const updateDayEnd = (date) => {
-    setSelectedDayEnd(date)
+  const selectDay = (date) => {
+    switch(true){
+      case date < today: 
+        console.log("Please select a day starting from today"); 
+      break;
+      case date > selectedDayStart && selectedDayEnd !== null:
+        setSelectedDayStart(date);
+        setSelectedDayEnd(null) 
+        break;
+      case date < selectedDayStart && selectedDayEnd !== null: 
+        setSelectedDayStart(date); 
+        setSelectedDayEnd(null); 
+        break;
+      case date > selectedDayStart && selectedDayEnd === null: 
+        setSelectedDayEnd(date); 
+        break;
+      default: 
+        console.log('Please choose a checkout day');
+    }
   }
 
   const updateMonth = (direction) => {
@@ -138,7 +161,7 @@ export const Calendar = () => {
           setSmS(smTransitionL);
           setNmS(nmTransitionL);
           setNnMs(nNmTransitionL);
-                      setTimeout(() => {
+          setTimeout(() => {
             //set new data
             setLastMonth({mon: selectedMonth.mon, yr: selectedMonth.yr})
             setSelectedMonth({mon: 1, yr: selectedMonth.yr + 1});
@@ -297,10 +320,10 @@ export const Calendar = () => {
         <button className="mx-5 self-center" onClick={() => updateMonth('+')}>+</button>
       </div>
       <div className="flex flex-row overflow-hidden ">
-        <Month month={lastMonth} className={lmStyleState} selectedDayStart={selectedDayStart} selectedDayEnd={selectedDayEnd}/>
-        <Month month={selectedMonth} className={smStyleState} selectedDayStart={selectedDayStart} selectedDayEnd={selectedDayEnd}/>
-        <Month month={nextMonth} className={nmStyleState} selectedDayStart={selectedDayStart} selectedDayEnd={selectedDayEnd}/>
-        <Month month={nextNextMonth} className={nnmStyleState} selectedDayStart={selectedDayStart} selectedDayEnd={selectedDayEnd}/>  
+        <Month month={lastMonth} className={lmStyleState} selectedDayStart={selectedDayStart} selectedDayEnd={selectedDayEnd} selectDay={selectDay} />
+        <Month month={selectedMonth} className={smStyleState} selectedDayStart={selectedDayStart} selectedDayEnd={selectedDayEnd} selectDay={selectDay}/>
+        <Month month={nextMonth} className={nmStyleState} selectedDayStart={selectedDayStart} selectedDayEnd={selectedDayEnd} selectDay={selectDay}/>
+        <Month month={nextNextMonth} className={nnmStyleState} selectedDayStart={selectedDayStart} selectedDayEnd={selectedDayEnd} selectDay={selectDay}/>  
       </div>
     </div>
   )
