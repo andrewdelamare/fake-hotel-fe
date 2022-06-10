@@ -1,9 +1,19 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { NavBar } from "./Nav"
 import { Calendar } from "./Calendar";
 function App() {
   return (
-    <div className="container overflow-x-hidden">
-      <Calendar />
-    </div>
+
+    <BrowserRouter>
+      <div className="container overflow-x-hidden">
+        <NavBar />
+      </div>
+      <Routes>
+        <Route path="/" element={<Calendar />} />
+      </Routes>
+      
+    </BrowserRouter>
+    
   );
 }
 
