@@ -3,10 +3,10 @@
 // Navbar
 // Room title
 // Room Pictures
-// Room description 
+// Room description
 // Calendar with available dates
 // Button to make booking with selected dates
-// 
+//
 // Footer
 //
 //

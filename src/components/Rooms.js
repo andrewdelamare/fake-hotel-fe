@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 //
 // Navbar
 // Page title
-// Room heros with pics and description 
+// Room heros with pics and description
 // |
 // |
 // |
@@ -15,16 +15,10 @@ import { useState, useEffect } from "react";
 // Footer
 //
 
-
 const Rooms = () => {
+  useEffect(() => {});
 
-
-
-  return (
-    <div className="container overflow-x-hidden">
-      
-    </div>
-  );
-}
+  return <div className="container overflow-x-hidden"></div>;
+};
 
 export default Rooms;
