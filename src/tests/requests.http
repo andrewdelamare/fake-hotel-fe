@@ -1,0 +1,9 @@
+POST https://fake-hotel-be.herokuapp.com/rooms HTTP/1.1
+content-type: application/json
+
+  {
+    "name": "Large room",
+    "description": "A large room for two to four people. Two double beds, couch, tv, and mini fridge.",
+    "maxOccupants": 4,
+    "beds": 2
+  }

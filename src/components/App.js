@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { NavBar } from "./Nav";
 import { Calendar } from "./Calendar";
-import { Rooms } from "./Rooms";
+import Rooms from "./Rooms";
 function App() {
   return (
     <BrowserRouter>
@@ -10,6 +10,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Calendar />} />
+        <Route path="/rooms" element={<Rooms />} />
       </Routes>
     </BrowserRouter>
   );
