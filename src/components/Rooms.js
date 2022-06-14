@@ -35,7 +35,7 @@ const Rooms = () => {
   });
   //{rooms.map(room => <RoomHero room={room} />)}
   return (
-    <div className="container overflow-x-hidden self-center">
+    <div className="self-center w-full">
       {rooms.length > 0 ? (
         rooms.map((room) => {
           return <RoomHero room={room} key={room.id} />;

@@ -5,13 +5,14 @@ import Rooms from "./Rooms";
 function App() {
   return (
     <BrowserRouter>
-      <div className="container overflow-x-hidden mx-auto self-center">
+      <div className="overflow-x-hidden flex flex-col">
         <NavBar />
-      </div>
+      
       <Routes>
         <Route path="/" element={<Calendar />} />
         <Route path="/rooms" element={<Rooms />} />
       </Routes>
+      </div>
     </BrowserRouter>
   );
 }
