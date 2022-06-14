@@ -5,7 +5,7 @@ import Rooms from "./Rooms";
 function App() {
   return (
     <BrowserRouter>
-      <div className="container overflow-x-hidden mx-auto">
+      <div className="container overflow-x-hidden mx-auto self-center">
         <NavBar />
       </div>
       <Routes>

@@ -26,7 +26,6 @@ const Rooms = () => {
         case 0:
           const rs = await getRooms();
           setRooms(rs);
-          console.log(rs);
           break;
         default:
           console.log("there are already rooms in the rooms array", rooms);
@@ -36,14 +35,13 @@ const Rooms = () => {
   });
   //{rooms.map(room => <RoomHero room={room} />)}
   return (
-    <div className="container overflow-x-hidden">
+    <div className="container overflow-x-hidden self-center">
       {rooms.length > 0 ? (
         rooms.map((room) => {
-          console.log(room, "this is the room");
-          return <div key={room.id}>{room.name}</div>;
+          return <RoomHero room={room} key={room.id} />;
         })
       ) : (
-        <div>Something Went Wrong</div>
+        <div>Loading...</div>
       )}
     </div>
   );
