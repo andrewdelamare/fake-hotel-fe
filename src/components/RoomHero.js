@@ -38,15 +38,17 @@ export const RoomHero = ({ room }) => {
         console.log("something went wrong...");
         break;
     }
-  });
+  }, [name]);
 
   return (
     <div className="w-full flex flex-row bg-slate-800 self-center ">
       <img className="w-2/3" src={process.env.PUBLIC_URL + imgP} alt="room" />
       <div className="w-1/3 text-white self-center p-5 flex flex-col bg-slate-600 rounded-2xl m-5">
         <div className="text-lg  ">{name}</div>
-        <div className="text-base text-slate-100" >{room.description}</div>
-        <button className="bg-slate-800 rounded-xl p-4 self-center mt-10" >Learn More</button>
+        <div className="text-base text-slate-100">{room.description}</div>
+        <button className="bg-slate-800 rounded-xl p-4 self-center mt-10">
+          Learn More
+        </button>
       </div>
     </div>
   );
