@@ -41,7 +41,7 @@ export const RoomHero = ({ room }) => {
   }, [name]);
 
   return (
-    <div className="w-full flex flex-row bg-slate-800 self-center ">
+    <div className="w-full flex flex-row self-center ">
       <img className="w-2/3" src={process.env.PUBLIC_URL + imgP} alt="room" />
       <div className="w-1/3 text-white self-center p-5 flex flex-col bg-slate-600 rounded-2xl m-5">
         <div className="text-lg  ">{name}</div>

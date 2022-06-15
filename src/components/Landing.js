@@ -16,10 +16,10 @@ import img from "../zero-take-WvHrrR1C5Po-unsplash.jpg";
 const LandingHero = () => (
   <div className="relative">
     <div className="">
-      <img src={img} alt="hotel" className="h-600 w-full object-cover" />
+      <img src={img} alt="hotel" className="h-600 w-full object-cover  " />
     </div>
 
-    <div className="absolute top-1/2 left-1/4 right-1/4 text-white backdrop-blur-sm">
+    <div className="absolute top-1/2 left-1/4 right-1/4 text-white">
       <div className="text-5xl">Central Finland Fake Hotel</div>
     </div>
   </div>
@@ -40,25 +40,27 @@ const Amenity = ({ title, desc, className, img, linkLoc }) => (
 const Amenities = () => (
   <div className="block w-full h-auto pt-4 pl-4 pb-4 relative">
     <Amenity
-      className="w-3/5 h-80 float-left relative"
+      className="w-3/5 h-[340px] float-left relative"
       title="Accomadations"
       desc="Find your paradise"
       linkLoc="/rooms"
     />
     <Amenity
-      className="w-2/5 h-96 float-right relative"
+      className="w-2/5 h-[360px] float-right relative"
+      title="Wellness Spa"
+      desc="Let your cares fade away"
+      linkLoc="/"
+    />
+    <Amenity
+      className="w-3/5 h-[300px] float-left relative"
       title="Gourmet Cuisine"
       desc="World class service, locally inspired"
       linkLoc="/"
     />
     <Amenity
-      className="w-3/5 h-64 float-left relative"
+      className="w-2/5 h-[280px] float-right relative"
       title="Meetings & Events"
-      linkLoc="/"
-    />
-    <Amenity
-      className="w-2/5 h-36 float-right relative"
-      title="Wellness Spa"
+      desc="Lets Meet!"
       linkLoc="/"
     />
   </div>

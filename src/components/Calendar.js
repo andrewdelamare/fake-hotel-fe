@@ -142,37 +142,40 @@ export const Calendar = () => {
   const [selectedDayStart, setSelectedDayStart] = useState(today);
   const [selectedDayEnd, setSelectedDayEnd] = useState(tomorrow);
   const [selectedMonth, setSelectedMonth] = useState({ mon: month, yr: year });
-  const [smStyleState, setSmS] = useState("");
+  const [smStyleState, setSmS] = useState("w-96");
   const [nextMonth, setNextMonth] = useState({
     mon: month === 12 ? 1 : month + 1,
     yr: month === 12 ? year + 1 : year,
   });
-  const [nmStyleState, setNmS] = useState("");
+  const [nmStyleState, setNmS] = useState("w-96");
   const [nextNextMonth, setNextNextMonth] = useState({
     mon: month === 12 ? 2 : month === 11 ? 1 : month + 2,
     yr: month === 12 ? year + 1 : month === 11 ? year + 1 : year,
   });
-  const [nnmStyleState, setNnMs] = useState("opacity-0");
+  const [nnmStyleState, setNnMs] = useState("opacity-0 w-96");
   const [lastMonth, setLastMonth] = useState({
     mon: month === 1 ? 12 : month - 1,
     yr: month === 1 ? year - 1 : year,
   });
-  const [lmStyleState, setLmS] = useState("opacity-0");
+  const [lmStyleState, setLmS] = useState("opacity-0 w-96");
 
-  const lmStyles = "opacity-0 ";
-  const lmTransitionR = "opacity-100 transition duration-300 translate-x-full";
+  const lmStyles = "opacity-0 w-96";
+  const lmTransitionR =
+    "opacity-100 w-96 transition duration-300 translate-x-full";
 
-  const smStyles = "opacity-100";
-  const smTransitionL = "opacity-0 transition duration-300 -translate-x-full  ";
-  const smTransitionR = " transition duration-300 translate-x-full";
+  const smStyles = "opacity-100 w-96 ";
+  const smTransitionL =
+    "opacity-0 w-96 transition duration-300 -translate-x-full  ";
+  const smTransitionR = " transition w-96 duration-300 translate-x-full";
 
-  const nmStyles = "opacity-100";
-  const nmTransitionL = " transition duration-300 -translate-x-full ";
-  const nmTransitionR = "transition duration-300 opacity-0 translate-x-full";
+  const nmStyles = "opacity-100 w-96";
+  const nmTransitionL = " transition w-96 duration-300 -translate-x-full ";
+  const nmTransitionR =
+    "transition w-96 duration-300 opacity-0 translate-x-full";
 
-  const nNmStyles = "opacity-0";
+  const nNmStyles = "opacity-0 w-96";
   const nNmTransitionL =
-    "opacity-100 transition duration-300 -translate-x-full";
+    "opacity-100 w-96 transition duration-300 -translate-x-full";
 
   const selectDay = (date) => {
     switch (true) {
@@ -414,7 +417,7 @@ export const Calendar = () => {
   };
 
   return (
-    <div className="absolute -left-64 w-1400 overflow-hidden ">
+    <div className="absolute w-full overflow-x-hidden ">
       <div className="flex justify-center flex-row mx-auto">
         <button className="mx-5 self-center" onClick={() => updateMonth("-")}>
           -
@@ -423,7 +426,7 @@ export const Calendar = () => {
           +
         </button>
       </div>
-      <div className="flex flex-row overflow-hidden ">
+      <div className="inline-flex overflow-x-hidden w-full self-center">
         <Month
           month={lastMonth}
           className={lmStyleState}

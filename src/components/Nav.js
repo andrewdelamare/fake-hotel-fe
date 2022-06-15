@@ -25,14 +25,20 @@ export const NavBar = () => {
         </Link>
 
         <Link
-          to="/"
+          to="/spa"
           className="inline-flex  border-0 pt-5 pb-2 px-3 mt-3 sm:px-6 focus:outline-none"
         >
-          About
+          Spa
         </Link>
 
         <Link
-          to="/"
+          to="/restaurant"
+          className="inline-flex  border-0 pt-5 pb-2 px-3 mt-3 sm:px-6 focus:outline-none"
+        >
+          Restaurant
+        </Link>
+        <Link
+          to="/book"
           className="inline-flex  border-0 pt-5 pb-2 px-3 mt-3 sm:px-6 focus:outline-none"
         >
           Book
