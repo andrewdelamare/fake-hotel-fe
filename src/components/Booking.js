@@ -11,6 +11,12 @@ import { Calendar } from "./Calendar";
 
 export const Booking = () => {
   const [rooms, setRooms] = useState([]);
+  const [selectedRoom, setSelRoom] = useState(null);
+
+  const chooseRoom = (room) => {
+    setSelRoom(room);
+    console.log(selectedRoom);
+  };
 
   useEffect(() => {
     const trySwitch = async (rooms) => {
@@ -20,11 +26,11 @@ export const Booking = () => {
           setRooms(rs);
           break;
         default:
-          console.log("there are already rooms in the rooms array", rooms);
+          console.log("useEffect firing at booking.js");
       }
     };
     trySwitch(rooms);
-  });
+  }, [rooms]);
 
   return (
     <div className="inline-flex">
@@ -36,8 +42,12 @@ export const Booking = () => {
         <div className="text-xl">Select a room</div>
         <div className="flex flex-col h-full">
           {rooms.map((room) => (
-            <button className="p-10 border-2 border-slate-800">
-              {room.name}
+            <button
+              className="p-10 border-2 border-slate-800 z-10"
+              onClick={() => chooseRoom(room)}
+              key={room.id}
+            >
+              <div>{room.name}</div>
             </button>
           ))}
         </div>

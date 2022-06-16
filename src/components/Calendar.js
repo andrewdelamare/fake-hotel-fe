@@ -421,7 +421,7 @@ export const Calendar = () => {
   };
 
   return (
-    <div className="relative overflow-x-hidden w-1200 ">
+    <div className="relative overflow-x-hidden w-1200 z-0">
       <div className="justify-center mx-auto">
         <button className="mx-5 self-center" onClick={() => updateMonth("-")}>
           -
