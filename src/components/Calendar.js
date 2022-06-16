@@ -13,6 +13,7 @@ import { useState } from "react";
 // ------------------------------------------------------------------------
 
 const Date = ({ selectDay, day, selectedDayStart, selectedDayEnd }) => {
+  const today = startOfToday();
   const dayOfWeek = day.getDay();
   let selStart = day.getTime() === selectedDayStart.getTime() ? true : false;
   let selEnd = false;
@@ -64,9 +65,12 @@ const Date = ({ selectDay, day, selectedDayStart, selectedDayEnd }) => {
   let selStylez =
     selStart !== false ? selected : selEnd !== false ? selected : "";
 
+  const invalidStylez = "line-through text-slate-500 decoration-red-500";
+  let beforeToday = day < today ? invalidStylez : "";
+
   return (
     <div
-      className={`${stylez} ${selStylez}`}
+      className={`${stylez} ${selStylez} ${beforeToday}`}
       role="button"
       onClick={selectDayClick}
     >
@@ -152,14 +156,14 @@ export const Calendar = () => {
     mon: month === 12 ? 2 : month === 11 ? 1 : month + 2,
     yr: month === 12 ? year + 1 : month === 11 ? year + 1 : year,
   });
-  const [nnmStyleState, setNnMs] = useState("opacity-0 w-96");
+  const [nnmStyleState, setNnMs] = useState("opacity-0 w-96 invisible");
   const [lastMonth, setLastMonth] = useState({
     mon: month === 1 ? 12 : month - 1,
     yr: month === 1 ? year - 1 : year,
   });
-  const [lmStyleState, setLmS] = useState("opacity-0 w-96");
+  const [lmStyleState, setLmS] = useState("opacity-0 w-96 invisible");
 
-  const lmStyles = "opacity-0 w-96";
+  const lmStyles = "opacity-0 w-96 invisible";
   const lmTransitionR =
     "opacity-100 w-96 transition duration-300 translate-x-full";
 
@@ -173,7 +177,7 @@ export const Calendar = () => {
   const nmTransitionR =
     "transition w-96 duration-300 opacity-0 translate-x-full";
 
-  const nNmStyles = "opacity-0 w-96";
+  const nNmStyles = "opacity-0 w-96 invisible";
   const nNmTransitionL =
     "opacity-100 w-96 transition duration-300 -translate-x-full";
 
@@ -417,8 +421,8 @@ export const Calendar = () => {
   };
 
   return (
-    <div className="absolute -left-96 overflow-x-hidden ">
-      <div className="flex justify-center flex-row mx-auto">
+    <div className="relative overflow-x-hidden w-1200 ">
+      <div className="justify-center mx-auto">
         <button className="mx-5 self-center" onClick={() => updateMonth("-")}>
           -
         </button>
