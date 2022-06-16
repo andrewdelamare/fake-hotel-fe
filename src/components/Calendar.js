@@ -67,10 +67,12 @@ const Date = ({ selectDay, day, selectedDayStart, selectedDayEnd }) => {
 
   const invalidStylez = "line-through text-slate-500 decoration-red-500";
   let beforeToday = day < today ? invalidStylez : "";
+  let beforeSelStart =
+    day < selectedDayStart && selectedDayEnd === null ? invalidStylez : "";
 
   return (
     <div
-      className={`${stylez} ${selStylez} ${beforeToday}`}
+      className={`${stylez} ${selStylez} ${beforeToday} ${beforeSelStart}`}
       role="button"
       onClick={selectDayClick}
     >
