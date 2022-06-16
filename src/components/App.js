@@ -1,10 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import { NavBar } from "./Nav";
-import { Calendar } from "./Calendar";
 import Rooms from "./Rooms";
 import { Landing } from "./Landing";
 import { Booking } from "./Booking";
 function App() {
+  let { size } = useParams();
+
   return (
     <BrowserRouter>
       <div className="overflow-x-hidden flex flex-col">
@@ -13,7 +14,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/rooms" element={<Rooms />} />
-          <Route path="/book" element={<Booking />} />
+          <Route path="/book" element={<Booking />}>
+            <Route path=":size" element={<Booking size={size} />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
