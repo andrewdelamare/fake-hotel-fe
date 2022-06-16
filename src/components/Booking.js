@@ -8,6 +8,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getRooms } from "../services/roomService";
+import { addBooking } from "../services/bookingService";
 import { Calendar } from "./Calendar";
 
 export const Booking = () => {
@@ -20,19 +21,20 @@ export const Booking = () => {
 
   const { size } = useParams();
 
+  const trySwitch = async (rooms) => {
+    switch (rooms.length) {
+      case 0:
+        const rs = await getRooms();
+        setRooms(rs);
+        break;
+      default:
+        console.log("useEffect firing at booking.js");
+    }
+  };
+
   useEffect(() => {
-    const trySwitch = async (rooms) => {
-      switch (rooms.length) {
-        case 0:
-          const rs = await getRooms();
-          setRooms(rs);
-          break;
-        default:
-          console.log("useEffect firing at booking.js");
-      }
-    };
     trySwitch(rooms);
-  });
+  }, [rooms]);
 
   const szSwitch = async () => {
     let rm;
@@ -58,7 +60,7 @@ export const Booking = () => {
         chooseRoom(rm[0]);
         break;
       default:
-        console.log("something broke in szSwitch at Booking.js useEffect");
+        console.log("no room size specified");
     }
   };
   if (rooms.length !== 0 && selectedRoom === null) {
@@ -69,6 +71,35 @@ export const Booking = () => {
       <div className="flex flex-col w-7/12 text-center items-center">
         <div className="text-xl pb-10">Select the dates for your stay</div>
         <Calendar />
+        <form className="flex flex-col text-left ">
+          <label className="block">
+            <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
+              First Name
+            </span>
+            <input className="border-2"></input>
+          </label>
+
+          <label className="block">
+            <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
+              Surname
+            </span>
+            <input className="border-2"></input>
+          </label>
+          <label>
+            <span className="after:content-['*'] after:ml-0.5 after:text-red-500">
+              Group size
+            </span>
+            <select name="people">
+              <option>Please select</option>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+            </select>
+          </label>
+        </form>
       </div>
       <div className="flex flex-col w-5/12 text-center">
         <div className="text-xl">Select a room</div>
