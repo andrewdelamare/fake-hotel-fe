@@ -417,7 +417,7 @@ export const Calendar = () => {
   };
 
   return (
-    <div className="absolute w-full overflow-x-hidden ">
+    <div className="absolute -left-96 overflow-x-hidden ">
       <div className="flex justify-center flex-row mx-auto">
         <button className="mx-5 self-center" onClick={() => updateMonth("-")}>
           -
