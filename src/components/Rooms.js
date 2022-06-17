@@ -35,7 +35,7 @@ const Rooms = () => {
   });
   //{rooms.map(room => <RoomHero room={room} />)}
   return (
-    <div className="self-center w-full">
+    <div className="flex flex-col self-center mx-10">
       {rooms.length > 0 ? (
         rooms.map((room) => {
           return <RoomHero room={room} key={room.id} />;

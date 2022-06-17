@@ -16,11 +16,15 @@ import img from "../zero-take-WvHrrR1C5Po-unsplash.jpg";
 const LandingHero = () => (
   <div className="relative">
     <div className="">
-      <img src={img} alt="hotel" className="h-600 w-full object-cover  " />
+      <img
+        src={img}
+        alt="hotel"
+        className="h-600 w-full object-cover saturate-150 contrast-75 "
+      />
     </div>
 
-    <div className="absolute top-1/2 left-1/4 right-1/4 text-white">
-      <div className="text-5xl">Central Finland Fake Hotel</div>
+    <div className="absolute top-1/2 left-1/4 right-1/4 text-white font-serif">
+      <div className="text-6xl">Central Finland Fake Hotel</div>
     </div>
   </div>
 );
@@ -31,7 +35,7 @@ const Amenity = ({ title, desc, className, img, linkLoc }) => (
       to={linkLoc}
       className="w-auto h-full mr-4 mb-4  bg-slate-200 text-center place-content-center flex flex-col"
     >
-      <div className="text-2xl">{title}</div>
+      <div className="text-3xl font-serif">{title}</div>
       <div>{desc}</div>
     </Link>
   </div>

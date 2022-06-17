@@ -47,14 +47,16 @@ export const RoomHero = ({ room }) => {
   }, [name]);
 
   return (
-    <div className="w-full flex flex-row self-center ">
+    <div className="w-full flex flex-row self-center rounded-2xl overflow-hidden my-5 bg-slate-500">
       <img className="w-2/3" src={process.env.PUBLIC_URL + imgP} alt="room" />
-      <div className="w-1/3 text-white self-center p-5 flex flex-col bg-slate-600 rounded-2xl m-5">
-        <div className="text-lg  ">{name}</div>
-        <div className="text-base text-slate-100">{room.description}</div>
+      <div className="w-1/3 text-white self-center p-5 flex flex-col bg-indigo-500 rounded-2xl m-5">
+        <div className="text-3xl font-serif  ">{name}</div>
+        <div className="text-base text-slate-100 font-sans">
+          {room.description}
+        </div>
         <Link
           to={link}
-          className="bg-slate-800 rounded-xl p-4 self-center mt-10"
+          className="bg-slate-800 rounded-xl p-4 self-center mt-10 "
         >
           Book Your Stay
         </Link>
