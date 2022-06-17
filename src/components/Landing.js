@@ -33,7 +33,10 @@ const Amenity = ({ title, desc, className, img, linkLoc }) => (
   <div className={className + " relative place-content-center flex flex-col"}>
     <Link
       to={linkLoc}
-      className="w-auto h-full mr-4 mb-4  bg-slate-200 text-center place-content-center flex flex-col"
+      className={
+        "w-auto h-full mr-4 mb-4 text-center place-content-center flex flex-col " +
+        img
+      }
     >
       <div className="text-3xl font-serif">{title}</div>
       <div>{desc}</div>
@@ -48,24 +51,28 @@ const Amenities = () => (
       title="Accomadations"
       desc="Find your paradise"
       linkLoc="/rooms"
+      img="bg-accomadation bg-cover bg-[center_48rem] text-white backdrop-invert"
     />
     <Amenity
       className="w-2/5 h-[360px] float-right relative"
       title="Wellness Spa"
       desc="Let your cares fade away"
       linkLoc="/"
+      img="bg-spa bg-cover text-white brightness-75"
     />
     <Amenity
       className="w-3/5 h-[300px] float-left relative"
       title="Gourmet Cuisine"
       desc="World class service, locally inspired"
       linkLoc="/"
+      img="bg-restaurant bg-cover bg-[center_left_29rem] text-white brightness-75"
     />
     <Amenity
       className="w-2/5 h-[280px] float-right relative"
       title="Meetings & Events"
       desc="Lets Meet!"
       linkLoc="/"
+      img="bg-events bg-cover bg-[right_17rem] text-white brightness-75"
     />
   </div>
 );

@@ -16,7 +16,12 @@ module.exports = {
         sans: ["Work Sans", "sans-serif"],
         serif: ["Neuton", "serif"],
       },
-      backgroundImage: {},
+      backgroundImage: {
+        accomadation: "url('images/linus-mimietz-sgIhwj4cSiU-unsplash.jpg')",
+        restaurant: "url('images/connor-wang-MNz7IGrcEl0-unsplash.jpg')",
+        spa: "url('images/r-architecture-M6E8SO73MPY-unsplash.jpg')",
+        events: "url('images/rhema-kallianpur-jbJ-_hw2yag-unsplash.jpg')",
+      },
       height: {
         400: "400px",
         500: "500px",
