@@ -13,8 +13,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Ruda", "sans-serif"],
-        serif: ["Roboto Slab", "serif"],
+        sans: ["Average Sans", "sans-serif"],
+        serif: ["Goudy Bookletter 1911", "serif"],
       },
       backgroundImage: {},
       height: {

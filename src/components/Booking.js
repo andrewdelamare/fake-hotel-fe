@@ -29,7 +29,7 @@ export const Booking = () => {
 
   const setSelStylez = (room) => {
     return selectedRoom != null && room === selectedRoom.name
-      ? "bg-indigo-600"
+      ? "ring-2 ring-slate-900 border-2"
       : "";
   };
 
@@ -85,65 +85,69 @@ export const Booking = () => {
     szSwitch();
   }
   return (
-    <div className="inline-flex mt-5 mx-10 w-full">
-      <div className="flex flex-col w-7/12 text-center items-center">
-        <div className="text-xl pb-10">Select the dates for your stay</div>
-        <Calendar />
-        <form className="ml-10 self-start flex flex-col text-left bg-slate-200 p-2 border-2 border-slate-900">
-          <label className="block">
-            <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
-              First Name
-            </span>
-            <input className="border-2"></input>
-          </label>
-          <label className="block">
-            <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
-              Surname
-            </span>
-            <input className="border-2"></input>
-          </label>
-          <label>
-            <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
-              Email address
-            </span>
-            <input className="border-2"></input>
-          </label>
-          <label>
-            <span className="block after:content-['*'] after:ml-0.5 after:text-red-500">
-              Group size
-            </span>
-            <select name="people" className="bg-white p-1 mb-3">
-              <option>Please select</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-            </select>
-          </label>
-          <button
-            className="border-2 bg-indigo-400 rounded-xl w-1/2 self-center"
-            onSubmit={(event) => event.preventDefault()}
-          >
-            Submit
-          </button>
-        </form>
-      </div>
-      <div className="flex flex-col w-5/12 text-center">
-        <div className="text-xl">Select a room</div>
-        <div className="flex flex-col h-full">
-          {rooms.map((room) => (
+    <div className="flex flex-col w-full mx-auto mt-10 text-center items-center mb-64">
+      <div className="text-xl pb-10">Select the dates for your stay</div>
+      <Calendar />
+      <div className="inline-flex place-items-center justify-center">
+        <div className="flex justify-center w-1/3 m-5">
+          <form className=" w-64 rounded-3xl flex flex-col text-left bg-slate-200 p-2 border-2 border-slate-900">
+            <label className="block">
+              <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
+                First Name
+              </span>
+              <input className="border-2"></input>
+            </label>
+            <label className="block">
+              <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
+                Surname
+              </span>
+              <input className="border-2"></input>
+            </label>
+            <label>
+              <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
+                Email address
+              </span>
+              <input className="border-2"></input>
+            </label>
+            <label>
+              <span className="block after:content-['*'] after:ml-0.5 after:text-red-500">
+                Group size
+              </span>
+              <select name="people" className="bg-white p-1 mb-3">
+                <option>Please select</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+                <option value={6}>6</option>
+              </select>
+            </label>
             <button
-              className={`m-5 p-5 border-2 rounded-xl w-2/3 self-center border-slate-800 bg-indigo-400 z-10 ${setSelStylez(
-                room.name
-              )}`}
-              onClick={() => chooseRoom(room)}
-              key={room.id}
+              type="button"
+              className="border-2 bg-indigo-400 rounded-xl w-1/2 self-center"
+              onClick={(event) => event.preventDefault()}
             >
-              <div>{room.name}</div>
+              Submit
             </button>
-          ))}
+          </form>
+        </div>
+        <div className="flex flex-col text-center m-5 w-1/3">
+          <div className="text-xl">Select a room</div>
+          <div className="flex flex-wrap place-content-center">
+            {rooms.map((room) => (
+              <button
+                type="button"
+                className={`h-24 w-24 m-2 rounded-3xl self-center bg-indigo-400 z-10 ${setSelStylez(
+                  room.name
+                )}`}
+                onClick={() => chooseRoom(room)}
+                key={room.id}
+              >
+                <div>{room.name}</div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
