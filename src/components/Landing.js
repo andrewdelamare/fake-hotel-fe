@@ -34,45 +34,46 @@ const Amenity = ({ title, desc, className, img, linkLoc }) => (
     <Link
       to={linkLoc}
       className={
-        "w-auto h-full mr-4 mb-4 text-center place-content-center flex flex-col " +
+        "w-auto h-full mr-4 mb-4 place-content-center bg-cover flex flex-col z-0 contrast-50 " +
         img
       }
-    >
+    />
+    <div className=" opacity-100 z-10 blur-none absolute self-center text-white">
       <div className="text-3xl font-serif">{title}</div>
       <div>{desc}</div>
-    </Link>
+    </div>
   </div>
 );
 
 const Amenities = () => (
-  <div className="block w-full h-auto pt-4 pl-4 pb-4 relative">
+  <div className="block w-full h-auto pt-4 pl-4 pb-4 relative ">
     <Amenity
       className="w-3/5 h-[340px] float-left relative"
       title="Accomadations"
       desc="Find your paradise"
       linkLoc="/rooms"
-      img="bg-accomadation bg-cover bg-[center_48rem] text-white backdrop-invert"
+      img="bg-accomadation  bg-[center_48rem]"
     />
     <Amenity
       className="w-2/5 h-[360px] float-right relative"
       title="Wellness Spa"
       desc="Let your cares fade away"
       linkLoc="/"
-      img="bg-spa bg-cover text-white brightness-75"
+      img="bg-spa bg-cover text-white"
     />
     <Amenity
       className="w-3/5 h-[300px] float-left relative"
       title="Gourmet Cuisine"
       desc="World class service, locally inspired"
       linkLoc="/"
-      img="bg-restaurant bg-cover bg-[center_left_29rem] text-white brightness-75"
+      img="bg-restaurant bg-cover bg-[center_left_29rem] text-white "
     />
     <Amenity
       className="w-2/5 h-[280px] float-right relative"
       title="Meetings & Events"
       desc="Lets Meet!"
       linkLoc="/"
-      img="bg-events bg-cover bg-[right_17rem] text-white brightness-75"
+      img="bg-events bg-cover bg-[right_17rem] text-white "
     />
   </div>
 );
