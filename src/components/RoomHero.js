@@ -7,53 +7,14 @@
 
 // import { useState } from "react";
 
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-export const RoomHero = ({ room }) => {
-  const [imgP, updateImageP] = useState(
-    "/images/xlRm/dada_design-q0FiVvo8jww-unsplash.jpg"
-  );
-  const [link, updateLink] = useState("/book");
-  const name = room.name;
-
-  useEffect(() => {
-    switch (name) {
-      case "Small room":
-        updateLink("/book/sm");
-        updateImageP(
-          "/images/smRm/point3d-commercial-imaging-ltd-ehTnhW_PhdM-unsplash.jpg"
-        );
-        break;
-      case "Normal room":
-        updateLink("/book/base");
-        updateImageP("/images/mdRm/dada_design-YmtlGsmTcgk-unsplash.jpg");
-        break;
-      case "Medium room":
-        updateLink("/book/md");
-        updateImageP("/images/mdRm/dada_design-40AxEHNrY2c-unsplash.jpg");
-        break;
-      case "Large room":
-        updateLink("/book/lg");
-        updateImageP("/images/lgRm/dada_design-KDPmuv6yFDI-unsplash.jpg");
-        break;
-      case "Huge room":
-        updateLink("/book/xl");
-        updateImageP("/images/xlRm/dada_design-q0FiVvo8jww-unsplash.jpg");
-        break;
-      default:
-        console.log("something went wrong...");
-        break;
-    }
-  }, [name]);
-
+export const RoomHero = ({ title, desc, img, link }) => {
   return (
-    <div className="w-full flex flex-row self-center rounded-2xl overflow-hidden my-5 bg-slate-500">
-      <img className="w-2/3" src={process.env.PUBLIC_URL + imgP} alt="room" />
-      <div className="w-1/3 text-white self-center p-5 flex flex-col bg-indigo-500 rounded-2xl m-5">
-        <div className="text-3xl font-serif  ">{name}</div>
-        <div className="text-base text-slate-100 font-sans">
-          {room.description}
-        </div>
+    <div className="w-full flex flex-row self-center overflow-hidden my-5 bg-slate-500">
+      <img className="w-2/3" src={process.env.PUBLIC_URL + img} alt="room" />
+      <div className="w-1/3 text-white self-center p-5 flex flex-col bg-stone-600  m-5">
+        <div className="text-3xl font-serif  ">{title}</div>
+        <div className="text-base text-slate-100 font-sans">{desc}</div>
         <Link
           to={link}
           className="bg-slate-800 rounded-xl p-4 self-center mt-10 "

@@ -18,31 +18,36 @@ import { RoomHero } from "./RoomHero";
 //
 
 const Rooms = () => {
-  const [rooms, setRooms] = useState([]);
-
-  useEffect(() => {
-    const trySwitch = async (rooms) => {
-      switch (rooms.length) {
-        case 0:
-          const rs = await getRooms();
-          setRooms(rs);
-          break;
-        default:
-          console.log("there are already rooms in the rooms array", rooms);
-      }
-    };
-    trySwitch(rooms);
-  });
-  //{rooms.map(room => <RoomHero room={room} />)}
   return (
     <div className="flex flex-col self-center mx-10">
-      {rooms.length > 0 ? (
-        rooms.map((room) => {
-          return <RoomHero room={room} key={room.id} />;
-        })
-      ) : (
-        <div>Loading...</div>
-      )}
+      <RoomHero
+        title="Small Room"
+        desc="A small room, perfect for one person looking for a relaxing getaway"
+        img="/images/smRm/point3d-commercial-imaging-ltd-ehTnhW_PhdM-unsplash.jpg"
+        link="/book/sm"
+        key="1"
+      />
+      <RoomHero
+        title="Standard room"
+        desc="Our standard room, an excelent choice for an individual looking for a bit more space, or a couple "
+        img="/images/mdRm/dada_design-YmtlGsmTcgk-unsplash.jpg"
+        link="/book/base"
+        key="2"
+      />
+      <RoomHero
+        title="Medium room"
+        desc="A big more roomy than our standard room, with space for up to four, this room is perfect for a couple or small family."
+        img="/images/mdRm/dada_design-40AxEHNrY2c-unsplash.jpg"
+        link="/book/md"
+        key="3"
+      />
+      <RoomHero
+        title="Large room"
+        desc="Our largest room, with plenty of space for the whole family. This room has "
+        img="/images/lgRm/dada_design-KDPmuv6yFDI-unsplash.jpg"
+        link="/book/lg"
+        key="4"
+      />
     </div>
   );
 };
