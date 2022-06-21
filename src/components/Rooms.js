@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import { getRooms } from "../services/roomService";
 import { RoomHero } from "./RoomHero";
 
 // Structure of Rooms page

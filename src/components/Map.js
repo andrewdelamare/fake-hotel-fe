@@ -27,7 +27,7 @@ export const Map = () => {
   return (
     <div
       ref={mapContainer}
-      className="map-container col-span-2 md:col-span-1 min-h-[400px] h-500 2xl:h-600 w-2/4 border-4 border-slate-800 rounded-lg shadow-lg"
+      className="map-container min-h-[400px] h-400 w-full"
     />
   );
 };
