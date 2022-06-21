@@ -3,6 +3,7 @@ import { NavBar } from "./Nav";
 import Rooms from "./Rooms";
 import { Landing } from "./Landing";
 import { Booking } from "./Booking";
+import { Footer } from "./Footer";
 function App() {
   let { size } = useParams();
 
@@ -18,6 +19,7 @@ function App() {
             <Route path=":size" element={<Booking size={size} />} />
           </Route>
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );

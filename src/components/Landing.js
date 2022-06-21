@@ -49,7 +49,7 @@ const Amenities = () => (
   <div className="block w-full h-auto pt-4 pl-4 pb-4 relative ">
     <Amenity
       className="w-3/5 h-[340px] float-left relative"
-      title="Accomadations"
+      title="Accommodations"
       desc="Find your paradise"
       linkLoc="/rooms"
       img="bg-accomadation  bg-[center_48rem]"
