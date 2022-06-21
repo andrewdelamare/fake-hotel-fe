@@ -23,6 +23,21 @@ import { getRooms } from "../services/roomService";
 import { addBooking } from "../services/bookingService";
 import { Calendar } from "./Calendar";
 
+const RoomButton = ({ name, chooseRoom, setSelStylez }) => {
+  return (
+    <button
+      type="button"
+      className={`h-24 w-24 m-2 rounded-3xl self-center bg-indigo-400 z-10 ${setSelStylez(
+        name
+      )}`}
+      onClick={() => chooseRoom(name)}
+      key={0}
+    >
+      <div>{name}</div>
+    </button>
+  );
+};
+
 export const Booking = () => {
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelRoom] = useState(null);
@@ -33,8 +48,9 @@ export const Booking = () => {
       : "";
   };
 
-  const chooseRoom = (room) => {
-    setSelRoom(room);
+  const chooseRoom = (name) => {
+    const rm = rooms.filter((room) => room.name === name);
+    setSelRoom(rm[0]);
   };
 
   const { size } = useParams();
@@ -55,27 +71,18 @@ export const Booking = () => {
   }, [rooms]);
 
   const szSwitch = async () => {
-    let rm;
     switch (size) {
       case "sm":
-        rm = rooms.filter((room) => room.name === "Small room");
-        chooseRoom(rm[0]);
+        chooseRoom("Small Room");
         break;
       case "base":
-        rm = rooms.filter((room) => room.name === "Normal room");
-        chooseRoom(rm[0]);
+        chooseRoom("Standard Room");
         break;
       case "md":
-        rm = rooms.filter((room) => room.name === "Medium room");
-        chooseRoom(rm[0]);
+        chooseRoom("Medium Room");
         break;
       case "lg":
-        rm = rooms.filter((room) => room.name === "Large room");
-        chooseRoom(rm[0]);
-        break;
-      case "xl":
-        rm = rooms.filter((room) => room.name === "Huge room");
-        chooseRoom(rm[0]);
+        chooseRoom("Large Room");
         break;
       default:
         console.log("no room size specified");
@@ -135,18 +142,26 @@ export const Booking = () => {
         <div className="flex flex-col text-center m-5 w-1/3">
           <div className="text-xl">Select a room</div>
           <div className="flex flex-wrap place-content-center">
-            {rooms.map((room) => (
-              <button
-                type="button"
-                className={`h-24 w-24 m-2 rounded-3xl self-center bg-indigo-400 z-10 ${setSelStylez(
-                  room.name
-                )}`}
-                onClick={() => chooseRoom(room)}
-                key={room.id}
-              >
-                <div>{room.name}</div>
-              </button>
-            ))}
+            <RoomButton
+              name="Small Room"
+              chooseRoom={chooseRoom}
+              setSelStylez={setSelStylez}
+            />
+            <RoomButton
+              name="Standard Room"
+              chooseRoom={chooseRoom}
+              setSelStylez={setSelStylez}
+            />
+            <RoomButton
+              name="Medium Room"
+              chooseRoom={chooseRoom}
+              setSelStylez={setSelStylez}
+            />
+            <RoomButton
+              name="Large Room"
+              chooseRoom={chooseRoom}
+              setSelStylez={setSelStylez}
+            />
           </div>
         </div>
       </div>

@@ -36,14 +36,14 @@ const Rooms = () => {
       />
       <RoomHero
         title="Medium room"
-        desc="A big more roomy than our standard room, with space for up to four, this room is perfect for a couple or small family."
+        desc="A bit more roomy than our standard room, with space for up to four, this room is perfect for a couple or small family."
         img="/images/mdRm/dada_design-40AxEHNrY2c-unsplash.jpg"
         link="/book/md"
         key="3"
       />
       <RoomHero
         title="Large room"
-        desc="Our largest room, with plenty of space for the whole family. This room has "
+        desc="Our largest room, with plenty of space for the whole family."
         img="/images/lgRm/dada_design-KDPmuv6yFDI-unsplash.jpg"
         link="/book/lg"
         key="4"
