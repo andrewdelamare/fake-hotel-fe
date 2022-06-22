@@ -9,9 +9,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="overflow-x-hidden flex flex-col">
+      <div className="overflow-x-hidden">
         <NavBar />
-
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/rooms" element={<Rooms />} />

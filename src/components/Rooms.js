@@ -17,7 +17,7 @@ import { RoomHero } from "./RoomHero";
 
 const Rooms = () => {
   return (
-    <div className="flex flex-col self-center mx-10">
+    <div className="flex flex-col self-center mx-10 mt-[96px]">
       <RoomHero
         title="Small Room"
         desc="A small room, perfect for one person looking for a relaxing getaway"

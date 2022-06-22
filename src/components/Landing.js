@@ -80,7 +80,7 @@ const Amenities = () => (
 
 export const Landing = () => {
   return (
-    <div>
+    <div className="mt-[96px]">
       <LandingHero />
       <Amenities />
     </div>

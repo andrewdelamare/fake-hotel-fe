@@ -92,7 +92,7 @@ export const Booking = () => {
     szSwitch();
   }
   return (
-    <div className="flex flex-col w-full mx-auto mt-10 text-center items-center mb-64">
+    <div className="flex flex-col w-full mx-auto mt-[96px] text-center items-center mb-64">
       <div className="text-xl pb-10">Select the dates for your stay</div>
       <Calendar />
       <div className="inline-flex place-items-center justify-center">

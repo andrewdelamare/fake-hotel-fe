@@ -5,41 +5,38 @@ import { ReactComponent as ContactIcon } from "../icons/comment-alt.svg" */
 import { Link } from "react-router-dom";
 export const NavBar = () => {
   return (
-    <nav className="inline-flex justify-between sm:mr-4 sticky top-0 float-right w-full font-serif z-50">
-      <div className="pl-5 pt-3 mt-4 text-xl sm:text-3xl font-serif">
+    <nav className="flex justify-between fixed z-20 bg-stone-200 top-0 w-full ">
+      <div className="m-7 text-xl sm:text-4xl font-serif ">
         Central Finland Fake Hotel
       </div>
-      <div className="flex flex-row justify-between sm:mr-5 ">
-        <Link
-          to="/"
-          className="inline-flex  border-0 pt-5 pb-2 px-3 mt-3 sm:px-6 focus:outline-none"
-        >
+      <div className="flex flex-row justify-between m-7 items-center">
+        <Link to="/" className="inline-flex border-0 px-5 focus:outline-none">
           Home
         </Link>
 
         <Link
           to="/rooms"
-          className="inline-flex  border-0 pt-5 pb-2 px-3 mt-3 sm:px-6 focus:outline-none"
+          className="inline-flex border-0 px-5  focus:outline-none"
         >
           Rooms
         </Link>
 
         <Link
           to="/spa"
-          className="inline-flex  border-0 pt-5 pb-2 px-3 mt-3 sm:px-6 focus:outline-none"
+          className="inline-flex border-0 px-5 focus:outline-none"
         >
           Spa
         </Link>
 
         <Link
           to="/restaurant"
-          className="inline-flex  border-0 pt-5 pb-2 px-3 mt-3 sm:px-6 focus:outline-none"
+          className="inline-flex border-0 px-5  focus:outline-none"
         >
           Restaurant
         </Link>
         <Link
           to="/book"
-          className="inline-flex  border-0 pt-5 pb-2 px-3 mt-3 sm:px-6 focus:outline-none"
+          className="inline-flex border-0 px-5  focus:outline-none"
         >
           Book
         </Link>
