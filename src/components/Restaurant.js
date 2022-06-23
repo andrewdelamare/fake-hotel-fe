@@ -36,9 +36,9 @@ export const Restaurant = () => {
   return (
     <div className="flex flex-col mt-[96px]">
       <Hero />
-      <p className="m-16 w-1/2 self-center text-2xl text-justify first-letter:text-6xl first-letter:text-slate-900 first-letter:mr-2 first-letter:float-left">
-        One of the finest dining experiences available in Finland, we aim to
-        provide an unforgettable culinary experience to each of our guests. Our
+      <p className="m-16 w-1/2 self-center text-2xl text-justify first-letter:text-7xl first-letter:text-slate-900 first-letter:mr-2 first-letter:float-left">
+        As one of the finest restaurants in Finland we aim to provide an
+        unforgettable culinary experience to each of our guests. Our
         unparalleled service and seasonally inspired menu has been recognized
         nationally and globally for its excellence.
       </p>

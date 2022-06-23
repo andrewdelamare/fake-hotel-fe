@@ -27,7 +27,7 @@ const RoomButton = ({ name, chooseRoom, setSelStylez }) => {
   return (
     <button
       type="button"
-      className={`h-24 w-24 m-2 rounded-3xl self-center bg-indigo-400 z-10 ${setSelStylez(
+      className={`h-24 w-24 m-2  self-center bg-stone-400 z-10 border-2 ${setSelStylez(
         name
       )}`}
       onClick={() => chooseRoom(name)}
@@ -92,12 +92,12 @@ export const Booking = () => {
     szSwitch();
   }
   return (
-    <div className="flex flex-col w-full mx-auto mt-[96px] text-center items-center mb-64">
+    <div className="flex flex-col w-full mx-auto mt-[192px] text-center items-center mb-64">
       <div className="text-xl pb-10">Select the dates for your stay</div>
       <Calendar />
       <div className="inline-flex place-items-center justify-center">
         <div className="flex justify-center w-1/3 m-5">
-          <form className=" w-64 rounded-3xl flex flex-col text-left bg-slate-200 p-2 border-2 border-slate-900">
+          <form className=" w-64 flex flex-col text-left bg-stone-200 p-2 border-2 border-slate-900">
             <label className="block">
               <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
                 First Name
@@ -132,14 +132,14 @@ export const Booking = () => {
             </label>
             <button
               type="button"
-              className="border-2 bg-indigo-400 rounded-xl w-1/2 self-center"
+              className="border-2 bg-stone-400 rounded-xl w-1/2 self-center"
               onClick={(event) => event.preventDefault()}
             >
               Submit
             </button>
           </form>
         </div>
-        <div className="flex flex-col text-center m-5 w-1/3">
+        <div className="flex flex-col text-center m-5 w-1/3 border-2 border-slate-900 bg-stone-200 ">
           <div className="text-xl">Select a room</div>
           <div className="flex flex-wrap place-content-center">
             <RoomButton
