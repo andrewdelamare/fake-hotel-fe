@@ -23,6 +23,12 @@ module.exports = {
         events: "url('images/rhema-kallianpur-jbJ-_hw2yag-unsplash.jpg')",
         menu: "url(images/jay-wennington-N_Y88TWmGwA-unsplash.jpg)",
         wine: "url(images/corina-rainer-sScNrKruEPs-unsplash.jpg)",
+        spa1: "url(images/chelsea-shapouri-r40EYKVyutI-unsplash.jpg)",
+        spa2: "url(images/huum-Ruso6EXMC5U-unsplash.jpg)",
+        spa3: "url(images/jared-rice-PibraWHb4h8-unsplash.jpg)",
+        spa4: "url(images/toa-heftiba-hBLf2nvp-Yc-unsplash.jpg)",
+        spa5: "url(images/ralph-ravi-kayden-CsqHFS6ZXfM-unsplash.jpg)",
+        spa6: "url(images/li-yang-a8iCZvtrHpQ-unsplash.jpg)",
       },
       height: {
         400: "400px",
