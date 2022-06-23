@@ -21,6 +21,8 @@ module.exports = {
         restaurant: "url('images/connor-wang-MNz7IGrcEl0-unsplash.jpg')",
         spa: "url('images/r-architecture-M6E8SO73MPY-unsplash.jpg')",
         events: "url('images/rhema-kallianpur-jbJ-_hw2yag-unsplash.jpg')",
+        menu: "url(images/jay-wennington-N_Y88TWmGwA-unsplash.jpg)",
+        wine: "url(images/corina-rainer-sScNrKruEPs-unsplash.jpg)",
       },
       height: {
         400: "400px",

@@ -65,7 +65,7 @@ const Amenities = () => (
       className="w-3/5 h-[300px] float-left relative"
       title="Gourmet Cuisine"
       desc="World class service, locally inspired"
-      linkLoc="/"
+      linkLoc="/restaurant"
       img="bg-restaurant bg-cover bg-[center_left_29rem] text-white "
     />
     <Amenity

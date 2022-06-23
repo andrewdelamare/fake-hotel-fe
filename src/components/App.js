@@ -4,6 +4,8 @@ import Rooms from "./Rooms";
 import { Landing } from "./Landing";
 import { Booking } from "./Booking";
 import { Footer } from "./Footer";
+import { Spa } from "./Spa";
+import { Restaurant } from "./Restaurant";
 function App() {
   let { size } = useParams();
 
@@ -17,6 +19,8 @@ function App() {
           <Route path="/book" element={<Booking />}>
             <Route path=":size" element={<Booking size={size} />} />
           </Route>
+          <Route path="/spa" element={<Spa />} />
+          <Route path="/restaurant" element={<Restaurant />} />
         </Routes>
         <Footer />
       </div>
