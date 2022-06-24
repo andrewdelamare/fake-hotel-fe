@@ -58,7 +58,7 @@ const Amenities = () => (
       className="w-2/5 h-[360px] float-right relative"
       title="Wellness Spa"
       desc="Let your cares fade away"
-      linkLoc="/"
+      linkLoc="/spa"
       img="bg-spa bg-cover text-white"
     />
     <Amenity

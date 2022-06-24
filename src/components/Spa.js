@@ -1,11 +1,5 @@
-import img1 from "../images/chelsea-shapouri-r40EYKVyutI-unsplash.jpg";
-import img2 from "../images/huum-Ruso6EXMC5U-unsplash.jpg";
 import img3 from "../images/jared-rice-PibraWHb4h8-unsplash.jpg";
-import img4 from "../images/toa-heftiba-hBLf2nvp-Yc-unsplash.jpg";
-import img5 from "../images/li-yang-a8iCZvtrHpQ-unsplash.jpg";
-import img6 from "../images/ralph-ravi-kayden-CsqHFS6ZXfM-unsplash.jpg";
 import { Link } from "react-router-dom";
-
 const Card = ({ title, desc, className, img, linkLoc }) => (
   <div className={className + " relative place-content-center flex flex-col"}>
     <Link
