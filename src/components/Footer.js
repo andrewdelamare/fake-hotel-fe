@@ -8,8 +8,8 @@ export const Footer = () => {
           <span className="text-2xl font-serif pb-5">Quick Menu </span>
           <Link to="/">Home</Link>
           <Link to="/rooms">Accommodations</Link>
-          <Link to="/">Spa</Link>
-          <Link to="/">Restaurant</Link>
+          <Link to="/spa">Spa</Link>
+          <Link to="/restaurant">Restaurant</Link>
           <Link to="/">Meetings & Events</Link>
           <Link to="/book">Book</Link>
         </div>

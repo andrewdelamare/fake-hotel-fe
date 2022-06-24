@@ -1,7 +1,3 @@
-/* import { ReactComponent as HomeIcon } from "../icons/home.svg"
-import { ReactComponent as PersonIcon } from "../icons/user.svg"
-import { ReactComponent as CodeIcon } from "../icons/briefcase.svg"
-import { ReactComponent as ContactIcon } from "../icons/comment-alt.svg" */
 import { Link } from "react-router-dom";
 export const NavBar = () => {
   return (

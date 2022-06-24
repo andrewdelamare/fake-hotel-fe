@@ -1,22 +1,3 @@
-// Navbar
-// Book Your Stay With Us
-// Selector for options
-// Calendar with available dates for selected options
-// Continue Button which reveals form
-// Form with info and submit button
-// On submit either display success or failure
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getRooms } from "../services/roomService";

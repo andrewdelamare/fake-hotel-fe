@@ -1,20 +1,4 @@
 import { RoomHero } from "./RoomHero";
-
-// Structure of Rooms page
-//
-// Navbar
-// Page title
-// Room heros with pics and description
-// |
-// |
-// |
-// v
-// End of room heros
-// Calendar with room slider/selecter to see availabe dates by room or room type.
-//
-// Footer
-//
-
 const Rooms = () => {
   return (
     <div className="flex flex-col self-center mx-4 mt-[96px]">
