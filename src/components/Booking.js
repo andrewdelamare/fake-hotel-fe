@@ -25,6 +25,7 @@ export const Booking = () => {
   const tomorrow = startOfTomorrow();
 
   const [rooms, setRooms] = useState([]);
+  const [reserved, setReserved] = useState([]);
   const [selectedRoom, setSelRoom] = useState(null);
   const [selectedDayStart, setSelectedDayStart] = useState(today);
   const [selectedDayEnd, setSelectedDayEnd] = useState(tomorrow);
@@ -35,10 +36,18 @@ export const Booking = () => {
       : "";
   };
 
+  const extractDates = (room) => {
+    const bookings = room.bookings;
+    const dates = bookings.map((b) => b.dates);
+    console.log(dates);
+    setReserved(dates);
+  };
+
   const chooseRoom = (name) => {
     const rm = rooms.filter((room) => room.name === name);
     setSelRoom(rm[0]);
     console.log(rm[0]);
+    extractDates(rm);
   };
 
   const { size } = useParams();
