@@ -136,17 +136,15 @@ const Month = ({
 
 // ------------------------------------------------------------------------
 
-export const Calendar = () => {
+export const Calendar = ({
+  setSelectedDayStart,
+  setSelectedDayEnd,
+  selectedDayStart,
+  selectedDayEnd,
+}) => {
   const today = startOfToday();
-  // If today is 6 October 2014:
-  //=> Mon Oct 6 2014 00:00:00
-  const tomorrow = startOfTomorrow();
-
   let month = getMonth(today) + 1;
   let year = getYear(today);
-
-  const [selectedDayStart, setSelectedDayStart] = useState(today);
-  const [selectedDayEnd, setSelectedDayEnd] = useState(tomorrow);
   const [selectedMonth, setSelectedMonth] = useState({ mon: month, yr: year });
   const [smStyleState, setSmS] = useState("w-96");
   const [nextMonth, setNextMonth] = useState({

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getRooms } from "../services/roomService";
 import { addBooking } from "../services/bookingService";
 import { Calendar } from "./Calendar";
+import { startOfToday, startOfTomorrow } from "date-fns";
 
 const RoomButton = ({ name, chooseRoom, setSelStylez }) => {
   return (
@@ -20,8 +21,13 @@ const RoomButton = ({ name, chooseRoom, setSelStylez }) => {
 };
 
 export const Booking = () => {
+  const today = startOfToday();
+  const tomorrow = startOfTomorrow();
+
   const [rooms, setRooms] = useState([]);
   const [selectedRoom, setSelRoom] = useState(null);
+  const [selectedDayStart, setSelectedDayStart] = useState(today);
+  const [selectedDayEnd, setSelectedDayEnd] = useState(tomorrow);
 
   const setSelStylez = (room) => {
     return selectedRoom != null && room === selectedRoom.name
@@ -32,6 +38,7 @@ export const Booking = () => {
   const chooseRoom = (name) => {
     const rm = rooms.filter((room) => room.name === name);
     setSelRoom(rm[0]);
+    console.log(rm[0]);
   };
 
   const { size } = useParams();
@@ -72,10 +79,20 @@ export const Booking = () => {
   if (rooms.length !== 0 && selectedRoom === null) {
     szSwitch();
   }
+
+  const handleSubmit = async (event) => {
+    await addBooking();
+  };
+
   return (
     <div className="flex flex-col w-full mx-auto mt-[192px] text-center items-center mb-64">
       <div className="text-xl pb-10">Select the dates for your stay</div>
-      <Calendar />
+      <Calendar
+        setSelectedDayStart={setSelectedDayStart}
+        setSelectedDayEnd={setSelectedDayEnd}
+        selectedDayStart={selectedDayStart}
+        selectedDayEnd={selectedDayEnd}
+      />
       <div className="inline-flex place-items-center justify-center">
         <div className="flex justify-center w-1/3 m-5">
           <form className=" w-64 flex flex-col text-left bg-stone-200 p-2 border-2 border-slate-900">
@@ -88,12 +105,6 @@ export const Booking = () => {
             <label className="block">
               <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
                 Surname
-              </span>
-              <input className="border-2"></input>
-            </label>
-            <label>
-              <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
-                Email address
               </span>
               <input className="border-2"></input>
             </label>
@@ -116,7 +127,7 @@ export const Booking = () => {
               className="border-2 bg-stone-400 rounded-xl w-1/2 self-center"
               onClick={(event) => event.preventDefault()}
             >
-              Submit
+              Book
             </button>
           </form>
         </div>
