@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getRooms } from "../services/roomService";
 import { addBooking } from "../services/bookingService";
 import { Calendar } from "./Calendar";
-import { startOfToday, startOfTomorrow } from "date-fns";
+import { endOfToday, startOfToday, startOfTomorrow } from "date-fns";
 
 const RoomButton = ({ name, chooseRoom, setSelStylez }) => {
   return (
@@ -21,7 +21,7 @@ const RoomButton = ({ name, chooseRoom, setSelStylez }) => {
 };
 
 export const Booking = () => {
-  const today = startOfToday();
+  const today = endOfToday();
   const tomorrow = startOfTomorrow();
 
   const [rooms, setRooms] = useState([]);
@@ -38,7 +38,7 @@ export const Booking = () => {
 
   const extractDates = (room) => {
     const bookings = room.bookings;
-    const dates = bookings.map((b) => b.dates);
+    let dates = bookings.map((b) => b.dates);
     console.log(dates);
     setReserved(dates);
   };
@@ -47,7 +47,6 @@ export const Booking = () => {
     const rm = rooms.filter((room) => room.name === name);
     setSelRoom(rm[0]);
     console.log(rm[0]);
-    extractDates(rm);
   };
 
   const { size } = useParams();
@@ -89,9 +88,7 @@ export const Booking = () => {
     szSwitch();
   }
 
-  const handleSubmit = async (event) => {
-    await addBooking();
-  };
+  const handleSubmit = async (event) => {};
 
   return (
     <div className="flex flex-col w-full mx-auto mt-[192px] text-center items-center mb-64">
@@ -101,6 +98,7 @@ export const Booking = () => {
         setSelectedDayEnd={setSelectedDayEnd}
         selectedDayStart={selectedDayStart}
         selectedDayEnd={selectedDayEnd}
+        reserved={reserved}
       />
       <div className="inline-flex place-items-center justify-center">
         <div className="flex justify-center w-1/3 m-5">

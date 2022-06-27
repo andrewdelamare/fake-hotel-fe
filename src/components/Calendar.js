@@ -5,20 +5,28 @@ import {
   startOfMonth,
   endOfMonth,
   parseISO,
-  startOfTomorrow,
+  endOfDay,
+  startOfDay,
 } from "date-fns";
 import { startOfToday } from "date-fns";
 import { useState } from "react";
 
 // ------------------------------------------------------------------------
 
-const Date = ({ selectDay, day, selectedDayStart, selectedDayEnd }) => {
+const Date = ({
+  selectDay,
+  day,
+  selectedDayStart,
+  selectedDayEnd,
+  reserved,
+}) => {
   const today = startOfToday();
   const dayOfWeek = day.getDay();
-  let selStart = day.getTime() === selectedDayStart.getTime() ? true : false;
+  let selStart =
+    endOfDay(day).getTime() === selectedDayStart.getTime() ? true : false;
   let selEnd = false;
   if (selectedDayEnd !== null) {
-    if (day.getTime() === selectedDayEnd.getTime()) {
+    if (startOfDay(day).getTime() === selectedDayEnd.getTime()) {
       selEnd = true;
     }
   }
@@ -68,11 +76,21 @@ const Date = ({ selectDay, day, selectedDayStart, selectedDayEnd }) => {
   const invalidStylez = "line-through text-slate-500 decoration-red-500";
   let beforeToday = day < today ? invalidStylez : "";
   let beforeSelStart =
-    day < selectedDayStart && selectedDayEnd === null ? invalidStylez : "";
+    endOfDay(day) < selectedDayStart && selectedDayEnd === null
+      ? invalidStylez
+      : "";
+  let cIreserved = reserved.includes(endOfDay(day));
+  let cOreserved = reserved.includes(startOfDay(day));
+  let isReserved =
+    cIreserved === true && selectedDayEnd != null
+      ? invalidStylez
+      : cOreserved === true && selectedDayEnd === null
+      ? invalidStylez
+      : "";
 
   return (
     <div
-      className={`${stylez} ${selStylez} ${beforeToday} ${beforeSelStart}`}
+      className={`${stylez} ${selStylez} ${beforeToday} ${beforeSelStart} ${isReserved}`}
       role="button"
       onClick={selectDayClick}
     >
@@ -89,6 +107,7 @@ const Month = ({
   selectedDayStart,
   selectedDayEnd,
   selectDay,
+  reserved,
 }) => {
   const intYr = month.yr;
   const intMon = month.mon < 10 ? `0${month.mon}` : month.mon;
@@ -127,6 +146,7 @@ const Month = ({
             selectDay={selectDay}
             selectedDayStart={selectedDayStart}
             selectedDayEnd={selectedDayEnd}
+            reserved={reserved}
           />
         ))}
       </div>
@@ -141,7 +161,10 @@ export const Calendar = ({
   setSelectedDayEnd,
   selectedDayStart,
   selectedDayEnd,
+  reserved,
 }) => {
+  console.log(selectedDayStart);
+  console.log(selectedDayEnd);
   const today = startOfToday();
   let month = getMonth(today) + 1;
   let year = getYear(today);
@@ -187,15 +210,15 @@ export const Calendar = ({
         console.log("Please select a day starting from today");
         break;
       case date > selectedDayStart && selectedDayEnd !== null:
-        setSelectedDayStart(date);
+        setSelectedDayStart(endOfDay(date));
         setSelectedDayEnd(null);
         break;
       case date < selectedDayStart && selectedDayEnd !== null:
-        setSelectedDayStart(date);
+        setSelectedDayStart(endOfDay(date));
         setSelectedDayEnd(null);
         break;
       case date > selectedDayStart && selectedDayEnd === null:
-        setSelectedDayEnd(date);
+        setSelectedDayEnd(startOfDay(date));
         break;
       default:
         console.log("Please choose a checkout day");
@@ -437,6 +460,7 @@ export const Calendar = ({
           selectedDayStart={selectedDayStart}
           selectedDayEnd={selectedDayEnd}
           selectDay={selectDay}
+          reserved={reserved}
         />
         <Month
           month={selectedMonth}
@@ -444,6 +468,7 @@ export const Calendar = ({
           selectedDayStart={selectedDayStart}
           selectedDayEnd={selectedDayEnd}
           selectDay={selectDay}
+          reserved={reserved}
         />
         <Month
           month={nextMonth}
@@ -451,6 +476,7 @@ export const Calendar = ({
           selectedDayStart={selectedDayStart}
           selectedDayEnd={selectedDayEnd}
           selectDay={selectDay}
+          reserved={reserved}
         />
         <Month
           month={nextNextMonth}
@@ -458,6 +484,7 @@ export const Calendar = ({
           selectedDayStart={selectedDayStart}
           selectedDayEnd={selectedDayEnd}
           selectDay={selectDay}
+          reserved={reserved}
         />
       </div>
     </div>
