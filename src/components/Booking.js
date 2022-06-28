@@ -3,7 +3,13 @@ import { useParams } from "react-router-dom";
 import { getRooms } from "../services/roomService";
 import { addBooking } from "../services/bookingService";
 import { Calendar } from "./Calendar";
-import { endOfToday, startOfToday, startOfTomorrow } from "date-fns";
+import {
+  endOfToday,
+  startOfTomorrow,
+  startOfDay,
+  eachDayOfInterval,
+  endOfDay,
+} from "date-fns";
 
 const RoomButton = ({ name, chooseRoom, setSelStylez }) => {
   return (
@@ -29,6 +35,9 @@ export const Booking = () => {
   const [selectedRoom, setSelRoom] = useState(null);
   const [selectedDayStart, setSelectedDayStart] = useState(today);
   const [selectedDayEnd, setSelectedDayEnd] = useState(tomorrow);
+  const [firstName, setFirstnm] = useState("");
+  const [surname, setSurnm] = useState("");
+  const [group, setGroup] = useState(1);
 
   const setSelStylez = (room) => {
     return selectedRoom != null && room === selectedRoom.name
@@ -88,7 +97,27 @@ export const Booking = () => {
     szSwitch();
   }
 
-  const handleSubmit = async (event) => {};
+  const handleName = (event) => {
+    setFirstnm(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handleSurnm = (event) => {
+    setSurnm(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handleGroup = (event) => {
+    setGroup(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(selectedRoom);
+    console.log(selectedDayStart);
+    console.log(selectedDayEnd);
+  };
 
   return (
     <div className="flex flex-col w-full mx-auto mt-[192px] text-center items-center mb-64">
@@ -102,24 +131,31 @@ export const Booking = () => {
       />
       <div className="inline-flex place-items-center justify-center">
         <div className="flex justify-center w-1/3 m-5">
-          <form className=" w-64 flex flex-col text-left bg-stone-200 p-2 border-2 border-slate-900">
+          <form
+            onSubmit={handleSubmit}
+            className=" w-64 flex flex-col text-left bg-stone-200 p-2 border-2 border-slate-900 "
+          >
             <label className="block">
               <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
                 First Name
               </span>
-              <input className="border-2"></input>
+              <input onChange={handleName} className="border-2"></input>
             </label>
             <label className="block">
               <span className="block font-medium after:content-['*'] after:ml-0.5 after:text-red-500">
                 Surname
               </span>
-              <input className="border-2"></input>
+              <input onChange={handleSurnm} className="border-2"></input>
             </label>
             <label>
               <span className="block after:content-['*'] after:ml-0.5 after:text-red-500">
                 Group size
               </span>
-              <select name="people" className="bg-white p-1 mb-3">
+              <select
+                onChange={handleGroup}
+                name="people"
+                className="bg-white p-1 mb-3"
+              >
                 <option>Please select</option>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
@@ -130,9 +166,8 @@ export const Booking = () => {
               </select>
             </label>
             <button
-              type="button"
+              type="submit"
               className="border-2 bg-stone-400 rounded-xl w-1/2 self-center"
-              onClick={(event) => event.preventDefault()}
             >
               Book
             </button>

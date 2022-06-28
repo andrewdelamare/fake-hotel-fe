@@ -163,8 +163,6 @@ export const Calendar = ({
   selectedDayEnd,
   reserved,
 }) => {
-  console.log(selectedDayStart);
-  console.log(selectedDayEnd);
   const today = startOfToday();
   let month = getMonth(today) + 1;
   let year = getYear(today);
