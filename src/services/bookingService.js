@@ -23,6 +23,7 @@ const addBooking = async (info) => {
     dates: info.dates,
     roomId: info.roomId,
   });
+
   return response.data;
 };
 

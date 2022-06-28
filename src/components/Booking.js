@@ -112,11 +112,33 @@ export const Booking = () => {
     console.log(event.target.value);
   };
 
+  const fillDates = (selStart, selEnd) => {
+    const intervalDays = eachDayOfInterval({ start: selStart, end: selEnd });
+    const len = intervalDays.length - 1;
+    const startDays = intervalDays.map((n, i) => {
+      console.log(n, i);
+      return i !== 0 ? startOfDay(n) : null;
+    });
+    const endDays = intervalDays.map((n, i) => {
+      return i !== len ? endOfDay(n) : null;
+    });
+    let combinedDays = startDays.concat(endDays);
+    let filteredDays = combinedDays.filter((d) => d !== null);
+    return filteredDays;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(selectedRoom);
-    console.log(selectedDayStart);
-    console.log(selectedDayEnd);
+    const dates = fillDates(selectedDayStart, selectedDayEnd);
+    const info = {
+      fn: firstName,
+      ln: surname,
+      people: group,
+      dates: dates,
+      roomId: selectedRoom.id,
+    };
+    console.log(info);
+    addBooking(info);
   };
 
   return (
