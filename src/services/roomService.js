@@ -5,13 +5,14 @@ const getRooms = async () => {
   return response.data;
 };
 
-const addBooking = async ({ rm, booking }) => {
+const addBtoRm = async (rm, booking) => {
   const id = rm.id;
-  const newBookings = rm.bookings.append(booking);
+  const newBookings = rm.bookings.concat(booking);
   const response = await axios.put(`${baseUrl}/rooms/${id}/booking`, {
     bookings: newBookings,
   });
+  console.log("addBtoRm trying to work");
   return response.data;
 };
 
-export { getRooms, addBooking };
+export { getRooms, addBtoRm };

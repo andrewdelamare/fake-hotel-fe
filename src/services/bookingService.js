@@ -1,4 +1,5 @@
 import axios from "axios";
+import { addBtoRm } from "./roomService";
 /* 
 bookingRouter.post('/bookings', async (req, res) => {
   const booking = new Booking({
@@ -23,7 +24,6 @@ const addBooking = async (info) => {
     dates: info.dates,
     roomId: info.roomId,
   });
-
   return response.data;
 };
 

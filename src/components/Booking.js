@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getRooms } from "../services/roomService";
+import { addBtoRm, getRooms } from "../services/roomService";
 import { addBooking } from "../services/bookingService";
 import { Calendar } from "./Calendar";
 import {
@@ -139,6 +139,7 @@ export const Booking = () => {
     };
     console.log(info);
     addBooking(info);
+    addBtoRm(selectedRoom, dates);
   };
 
   return (
