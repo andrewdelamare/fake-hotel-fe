@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { addBtoRm, getRooms } from "../services/roomService";
+import { addBtoRm, getRoom, getRooms } from "../services/roomService";
 import { addBooking } from "../services/bookingService";
 import { Calendar } from "./Calendar";
 import {
@@ -9,6 +9,7 @@ import {
   startOfDay,
   eachDayOfInterval,
   endOfDay,
+  parseJSON,
 } from "date-fns";
 
 const RoomButton = ({ name, chooseRoom, setSelStylez }) => {
@@ -31,7 +32,7 @@ export const Booking = () => {
   const tomorrow = startOfTomorrow();
 
   const [rooms, setRooms] = useState([]);
-  const [reserved, setReserved] = useState([]);
+  const [reserved, setReserved] = useState([null]);
   const [selectedRoom, setSelRoom] = useState(null);
   const [selectedDayStart, setSelectedDayStart] = useState(today);
   const [selectedDayEnd, setSelectedDayEnd] = useState(tomorrow);
@@ -45,17 +46,18 @@ export const Booking = () => {
       : "";
   };
 
-  const extractDates = (room) => {
+  const extractDates = async (room) => {
     const bookings = room.bookings;
-    let dates = bookings.map((b) => b.dates);
+    let dates = await bookings.map((b) => parseJSON(b));
     console.log(dates);
     setReserved(dates);
+    console.log("reserved dates: ", reserved);
   };
 
-  const chooseRoom = (name) => {
+  const chooseRoom = async (name) => {
     const rm = rooms.filter((room) => room.name === name);
     setSelRoom(rm[0]);
-    console.log(rm[0]);
+    extractDates(rm[0]);
   };
 
   const { size } = useParams();
@@ -90,13 +92,17 @@ export const Booking = () => {
         chooseRoom("Large Room");
         break;
       default:
-        console.log("no room size specified");
+        chooseRoom("Standard Room");
     }
   };
   if (rooms.length !== 0 && selectedRoom === null) {
     szSwitch();
   }
-
+  if (rooms.length !== 0 && selectedRoom != null && reserved[0] === null) {
+    extractDates(selectedRoom);
+    console.log(selectedRoom);
+    console.log(reserved);
+  }
   const handleName = (event) => {
     setFirstnm(event.target.value);
     console.log(event.target.value);
@@ -139,7 +145,10 @@ export const Booking = () => {
     };
     console.log(info);
     addBooking(info);
-    addBtoRm(selectedRoom, dates);
+    await addBtoRm(selectedRoom, dates);
+    const response = await getRoom(selectedRoom.id);
+    setSelRoom(response);
+    extractDates(response);
   };
 
   return (
