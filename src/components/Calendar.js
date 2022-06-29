@@ -9,7 +9,7 @@ import {
   startOfDay,
 } from "date-fns";
 import { startOfToday } from "date-fns";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // ------------------------------------------------------------------------
 
@@ -20,6 +20,9 @@ const Date = ({
   selectedDayEnd,
   reserved,
 }) => {
+  const [ciRes, setCiRes] = useState("");
+  const [coRes, setCoRes] = useState("");
+
   const today = startOfToday();
   const dayOfWeek = day.getDay();
   let selStart =
@@ -79,18 +82,29 @@ const Date = ({
     endOfDay(day) < selectedDayStart && selectedDayEnd === null
       ? invalidStylez
       : "";
-  let cIreserved = reserved.includes(endOfDay(day));
-  let cOreserved = reserved.includes(startOfDay(day));
-  let isReserved =
-    cIreserved === true && selectedDayEnd != null
-      ? invalidStylez
-      : cOreserved === true && selectedDayEnd === null
-      ? invalidStylez
-      : "";
+
+  const end = endOfDay(day);
+  const start = startOfDay(day);
+
+  useRef(() => {
+    if (reserved[0] != null) {
+      const isReserved = () => {
+        let cIreserved = reserved.includes(end);
+        let cOreserved = reserved.includes(start);
+        console.log(cIreserved, cOreserved);
+        cIreserved === true && selectedDayEnd != null
+          ? setCiRes(invalidStylez)
+          : cOreserved === true && selectedDayEnd === null
+          ? setCoRes(invalidStylez)
+          : setCiRes("");
+      };
+      isReserved();
+    }
+  }, [reserved, start, end, selectedDayStart, selectedDayEnd]);
 
   return (
     <div
-      className={`${stylez} ${selStylez} ${beforeToday} ${beforeSelStart} ${isReserved}`}
+      className={`${stylez} ${selStylez} ${beforeToday} ${beforeSelStart} ${ciRes} ${coRes} `}
       role="button"
       onClick={selectDayClick}
     >

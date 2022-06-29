@@ -1,5 +1,4 @@
 import axios from "axios";
-import { addBtoRm } from "./roomService";
 /* 
 bookingRouter.post('/bookings', async (req, res) => {
   const booking = new Booking({

@@ -51,7 +51,6 @@ export const Booking = () => {
     let dates = await bookings.map((b) => parseJSON(b));
     console.log(dates);
     setReserved(dates);
-    console.log("reserved dates: ", reserved);
   };
 
   const chooseRoom = async (name) => {
