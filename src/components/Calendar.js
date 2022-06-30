@@ -87,14 +87,19 @@ const Date = ({
   const start = startOfDay(day);
 
   useEffect(() => {
-    let cIreserved = reserved.find((d) => d.getTime() === end.getTime());
-    let cOreserved = reserved.find((d) => d.getTime() === start.getTime());
-
-    cIreserved !== undefined && selectedDayEnd != null
-      ? setCiRes(invalidStylez)
-      : cOreserved !== undefined && selectedDayEnd === null
-      ? setCoRes(invalidStylez)
-      : setCiRes("");
+    if (reserved[0] !== null) {
+      let cIreserved = reserved.find((d) => d.getTime() === end.getTime());
+      let cOreserved = reserved.find((d) => d.getTime() === start.getTime());
+      selectedDayStart !== null &&
+      selectedDayEnd !== null &&
+      selectedDayEnd.getTime() === start.getTime()
+        ? setCiRes("")
+        : cOreserved !== undefined && selectedDayEnd === null
+        ? setCoRes(invalidStylez)
+        : cIreserved !== undefined && selectedDayEnd != null
+        ? setCiRes(invalidStylez)
+        : setCiRes("");
+    }
   });
 
   return (

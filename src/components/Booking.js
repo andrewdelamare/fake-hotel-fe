@@ -49,7 +49,6 @@ export const Booking = () => {
   const extractDates = async (room) => {
     const bookings = room.bookings;
     let dates = await bookings.map((b) => parseJSON(b));
-    console.log(dates);
     setReserved(dates);
   };
 
