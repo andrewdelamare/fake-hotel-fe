@@ -86,21 +86,16 @@ const Date = ({
   const end = endOfDay(day);
   const start = startOfDay(day);
 
-  useRef(() => {
-    if (reserved[0] != null) {
-      const isReserved = () => {
-        let cIreserved = reserved.includes(end);
-        let cOreserved = reserved.includes(start);
-        console.log(cIreserved, cOreserved);
-        cIreserved === true && selectedDayEnd != null
-          ? setCiRes(invalidStylez)
-          : cOreserved === true && selectedDayEnd === null
-          ? setCoRes(invalidStylez)
-          : setCiRes("");
-      };
-      isReserved();
-    }
-  }, [reserved, start, end, selectedDayStart, selectedDayEnd]);
+  useEffect(() => {
+    let cIreserved = reserved.find((d) => d.getTime() === end.getTime());
+    let cOreserved = reserved.find((d) => d.getTime() === start.getTime());
+
+    cIreserved !== undefined && selectedDayEnd != null
+      ? setCiRes(invalidStylez)
+      : cOreserved !== undefined && selectedDayEnd === null
+      ? setCoRes(invalidStylez)
+      : setCiRes("");
+  });
 
   return (
     <div
