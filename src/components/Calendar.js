@@ -85,6 +85,10 @@ const Date = ({
 
   const end = endOfDay(day);
   const start = startOfDay(day);
+  const reset = () => {
+    setCiRes("");
+    setCoRes("");
+  };
 
   useEffect(() => {
     if (reserved[0] !== null) {
@@ -98,8 +102,7 @@ const Date = ({
         ? setCoRes(invalidStylez)
         : cIreserved !== undefined && selectedDayEnd != null
         ? setCiRes(invalidStylez)
-        : setCiRes("");
-      setCoRes("");
+        : reset();
     }
   });
 
@@ -157,7 +160,6 @@ const Month = ({
           <Date
             day={day}
             key={day}
-            selected={false}
             selectDay={selectDay}
             selectedDayStart={selectedDayStart}
             selectedDayEnd={selectedDayEnd}
