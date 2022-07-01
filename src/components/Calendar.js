@@ -179,6 +179,7 @@ export const Calendar = ({
   selectedDayStart,
   selectedDayEnd,
   reserved,
+  filldates,
 }) => {
   const today = startOfToday();
   let month = getMonth(today) + 1;
@@ -236,6 +237,14 @@ export const Calendar = ({
       : false;
   };
 
+  const detInclRes = (end) => {
+    const gtRes = reserved.map((date) => date.getTime());
+    const filled = filldates(selectedDayStart, end);
+    const fillmap = filled.map((date) => date.getTime());
+    const resArr = gtRes.map((date) => fillmap.includes(date));
+    return resArr.includes(true) ? true : false;
+  };
+
   const selectDay = (date) => {
     switch (true) {
       case date < today:
@@ -262,11 +271,11 @@ export const Calendar = ({
         }
         break;
       case date > selectedDayStart && selectedDayEnd === null:
-        if (determineRes(date, "out") === false) {
+        if (determineRes(date, "out") === false && detInclRes(date) === false) {
           setSelectedDayEnd(startOfDay(date));
         } else {
           window.alert(
-            "Check out for this day is already reserved. Please choose another check out date."
+            "The dates you selected are not available. Please choose another check out date."
           );
         }
 

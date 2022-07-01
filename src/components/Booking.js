@@ -98,8 +98,6 @@ export const Booking = () => {
   }
   if (rooms.length !== 0 && selectedRoom != null && reserved[0] === null) {
     extractDates(selectedRoom);
-    console.log(selectedRoom);
-    console.log(reserved);
   }
   const handleName = (event) => {
     setFirstnm(event.target.value);
@@ -120,7 +118,6 @@ export const Booking = () => {
     const intervalDays = eachDayOfInterval({ start: selStart, end: selEnd });
     const len = intervalDays.length - 1;
     const startDays = intervalDays.map((n, i) => {
-      console.log(n, i);
       return i !== 0 ? startOfDay(n) : null;
     });
     const endDays = intervalDays.map((n, i) => {
@@ -158,6 +155,7 @@ export const Booking = () => {
         selectedDayStart={selectedDayStart}
         selectedDayEnd={selectedDayEnd}
         reserved={reserved}
+        filldates={fillDates}
       />
       <div className="inline-flex place-items-center justify-center">
         <div className="flex justify-center w-1/3 m-5">
