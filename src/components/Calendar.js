@@ -9,7 +9,7 @@ import {
   startOfDay,
 } from "date-fns";
 import { startOfToday } from "date-fns";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 // ------------------------------------------------------------------------
 
@@ -99,6 +99,7 @@ const Date = ({
         : cIreserved !== undefined && selectedDayEnd != null
         ? setCiRes(invalidStylez)
         : setCiRes("");
+      setCoRes("");
     }
   });
 
@@ -216,21 +217,57 @@ export const Calendar = ({
   const nNmTransitionL =
     "opacity-100 w-96 transition duration-300 -translate-x-full";
 
+  const determineRes = (day, inOut) => {
+    const end = endOfDay(day);
+    const start = startOfDay(day);
+    let cIreserved = reserved.find((d) => d.getTime() === end.getTime());
+    let cOreserved = reserved.find((d) => d.getTime() === start.getTime());
+
+    return inOut === "in" && cIreserved === undefined
+      ? false
+      : inOut === "in" && cIreserved !== undefined
+      ? true
+      : inOut === "out" && cOreserved === undefined
+      ? false
+      : inOut === "out" && cOreserved !== undefined
+      ? true
+      : false;
+  };
+
   const selectDay = (date) => {
     switch (true) {
       case date < today:
         console.log("Please select a day starting from today");
         break;
       case date > selectedDayStart && selectedDayEnd !== null:
-        setSelectedDayStart(endOfDay(date));
-        setSelectedDayEnd(null);
+        if (determineRes(date, "in") === false) {
+          setSelectedDayStart(endOfDay(date));
+          setSelectedDayEnd(null);
+        } else {
+          window.alert(
+            "Check in for this day is already reserved. Please choose another date for your stay."
+          );
+        }
         break;
       case date < selectedDayStart && selectedDayEnd !== null:
-        setSelectedDayStart(endOfDay(date));
-        setSelectedDayEnd(null);
+        if (determineRes(date, "in") === false) {
+          setSelectedDayStart(endOfDay(date));
+          setSelectedDayEnd(null);
+        } else {
+          window.alert(
+            "Check in for this day is already reserved. Please choose another date for your stay."
+          );
+        }
         break;
       case date > selectedDayStart && selectedDayEnd === null:
-        setSelectedDayEnd(startOfDay(date));
+        if (determineRes(date, "out") === false) {
+          setSelectedDayEnd(startOfDay(date));
+        } else {
+          window.alert(
+            "Check out for this day is already reserved. Please choose another check out date."
+          );
+        }
+
         break;
       default:
         console.log("Please choose a checkout day");
